@@ -23,6 +23,8 @@ Guías de estilo
 Desarrolladores
 José Carlos Alcalá Ruíz - 180872 - [GitHub](https://github.com/JoseAlcala180872)
 
+Jose Miguel Rodriguez Reyna - 216743 - [GitHub](https://github.com/JoMi21)
+
 Nombre Completo - Rol Principal - GitHub
 
 
