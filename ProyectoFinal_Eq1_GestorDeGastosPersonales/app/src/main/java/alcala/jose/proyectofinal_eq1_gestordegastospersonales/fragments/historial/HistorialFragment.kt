@@ -1,11 +1,15 @@
 package alcala.jose.proyectofinal_eq1_gestordegastospersonales.fragments.historial
 
+import alcala.jose.proyectofinal_eq1_gestordegastospersonales.PerfilUsuario
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.R
+import android.content.Intent
+import android.widget.ImageView
+import android.widget.TextView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,8 +38,11 @@ class HistorialFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_historial, container, false)
+        val view = inflater.inflate(R.layout.fragment_historial, container, false)
+
+        setupUserIconClick(view)
+
+        return view
     }
 
     companion object {
@@ -56,5 +63,20 @@ class HistorialFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    private fun setupUserIconClick(view: View) {
+        val iconUser: ImageView = view.findViewById(R.id.nav_configuracion)
+
+        iconUser.setOnClickListener {
+            val intent = Intent(requireContext(), PerfilUsuario::class.java)
+            startActivity(intent)
+        }
+
+        val userName: TextView = view.findViewById(R.id.user_name)
+        userName.setOnClickListener {
+            val intent = Intent(requireContext(), PerfilUsuario::class.java)
+            startActivity(intent)
+        }
     }
 }
