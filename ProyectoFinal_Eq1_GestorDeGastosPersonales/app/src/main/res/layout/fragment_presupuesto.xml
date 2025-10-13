@@ -1,14 +1,281 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/rosa"
     tools:context=".fragments.presupuesto.PresupuestoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/moradoClaro"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/imagesix"
+            android:layout_marginEnd="12dp"
+             />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="Presupuesto"
+            android:textColor="@color/black"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:text="Presupuesto Mensual"
+        android:gravity="center"
+        android:textColor="@color/black"
+        />
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/borde_naranja"
+        android:padding="15dp"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Presupuesto Total"
+                android:textSize="14sp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/presupuestoTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="32sp"
+                android:text="$25,000"
+                android:textStyle="bold"
+                android:textColor="@color/morado"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="end">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gastado"
+                android:textSize="12sp"
+                android:textColor="@color/gris"/>
+
+            <TextView
+                android:id="@+id/gastado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$18,700"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/rojoClaro"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textSize="12sp"
+                android:textColor="@color/azulClaro"
+                android:text="Restante: $6,300"/>
+        </LinearLayout>
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/agregar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+ Agregar"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:backgroundTint="@color/naranja"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="end" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Categorias"
+        android:textColor="@color/white"
+        android:layout_marginStart="25dp"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        android:textSize="19sp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/borde_naranja"
+        android:padding="16dp"
+        android:layout_margin="16dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/boton_circular_rojo"
+            android:src="@drawable/ic_food"
+            android:padding="4dp"
+            android:layout_marginEnd="12dp"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="12dp"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Alimentación"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$"
+                            android:textSize="14sp"
+                            android:textColor="#666666"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="8dp"/>
+                        <TextView
+                            android:id="@+id/txtCantidadActualAlmientacion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:text="5,200"
+                            android:textColor="#666666"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="8dp"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="/"
+                            android:textSize="14sp"
+                            android:textColor="#666666"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="8dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$"
+                            android:textSize="14sp"
+                            android:textColor="#666666"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="8dp"/>
+                        <TextView
+                            android:id="@+id/txtCantidadTotalAlimentacion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="8,000"
+                            android:textSize="14sp"
+                            android:textColor="#666666"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="8dp"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/btnAgregarAlimentacion"
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
+                    android:background="@drawable/boton_circular_naranja"
+                    android:padding="10dp"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/ic_add_24"
+                    android:layout_marginEnd="8dp"/>
+
+                <ImageButton
+                    android:id="@+id/btnSignoAlimentacion"
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
+                    android:background="@drawable/boton_circular_naranja"
+                    android:src="@drawable/ic_slash_24"
+                    android:padding="20dp"/>
+
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ProgressBar
+                    android:id="@+id/barraProgeso"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="18dp"
+                    android:progress="65"
+                    android:max="100"
+                    android:progressDrawable="@drawable/barra_redondeada"/>
+
+                <TextView
+                    android:id="@+id/txtPorcentaje"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="65%"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
