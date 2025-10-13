@@ -27,7 +27,9 @@ Jose Miguel Rodriguez Reyna - 216743 - [GitHub](https://github.com/JoMi21)
 
 Angel De Jesus Santos Sarabia - 205750 - [GitHub](https://github.com/angeldeyisus)
 
-Nombre Completo - Rol Principal - GitHub
+Chris Alberto Elizalde Andrade - 240005 - [GitHub](https://github.com/Crikz03)
+
+Nombre Completo - ID - GitHub
 
 
 
