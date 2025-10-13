@@ -14,24 +14,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/moradoClaro">
+        android:background="@color/moradoClaro"
+        android:gravity="center_vertical">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/imagesix"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Registrate"
-            android:textSize="42sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textAlignment="center"
+            android:src="@drawable/imagesix"
+            android:layout_marginEnd="12dp"
             />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Registro"
+            android:textSize="28sp"
+            android:textColor="@color/black"
+            android:paddingLeft="50dp"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingTop="50dp">
 
     <TextView
         android:layout_width="wrap_content"
@@ -151,23 +162,24 @@
         />
 
     <Button
-        android:id="@+id/btnRegistrarte"
+        android:id="@+id/btnRegistrarGasto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Registrarte"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="@color/naranja"
         android:textColor="@color/black"
-        android:textSize="16sp"
-        android:layout_marginTop="20dp"
-        android:textStyle="bold"
-        />
+        android:textSize="18sp"
+   android:layout_marginTop="30dp"
+        android:textStyle="bold" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
         android:src="@drawable/imagethree"
-        android:layout_gravity="center_horizontal"/>
-
+        android:layout_gravity="center_horizontal"
+        android:scaleType="center"
+        android:layout_marginTop="4dp" />
+    </LinearLayout>
 
 </LinearLayout>
