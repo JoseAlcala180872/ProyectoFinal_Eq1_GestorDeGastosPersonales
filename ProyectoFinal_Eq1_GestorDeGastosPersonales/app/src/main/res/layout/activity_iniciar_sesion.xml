@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="@color/rosa">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Iniciar sesión"
+        android:textSize="40sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/imagefour"
+        android:layout_gravity="center_horizontal"
+        />
+
+    <ImageView
+        android:layout_width="142dp"
+        android:layout_height="142dp"
+        android:src="@drawable/imagesix"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Correo:"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        android:textStyle="italic"
+        android:layout_marginLeft="45dp"
+        />
+
+    <EditText
+        android:id="@+id/etCorreoInicio"
+        android:layout_width="319dp"
+        android:layout_height="50dp"
+        android:hint="ejemplo@dominio.com"
+        android:background="@color/white"
+        android:layout_gravity="center_horizontal"
+        android:inputType="textEmailAddress"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contraseña:"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        android:textStyle="italic"
+        android:layout_marginLeft="45dp"
+        />
+
+    <EditText
+        android:id="@+id/etContraseñaInicio"
+        android:layout_width="319dp"
+        android:layout_height="50dp"
+        android:hint="******"
+        android:background="@color/white"
+        android:layout_gravity="center_horizontal"
+        android:inputType="textPassword"
+        />
+
+    <Button
+        android:id="@+id/btnIngresarInicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ingresar"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/naranja"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/imagethree"
+        android:layout_gravity="center_horizontal"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/naranja">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¿Olvidaste tu contraseña?"
+            android:layout_gravity="center"
+            android:textSize="15sp"/>
+    </LinearLayout>
+
+
+</LinearLayout>
