@@ -1,14 +1,221 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/rosa"
     tools:context=".fragments.presupuesto.PresupuestoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/moradoClaro"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/imagesix"
+            android:layout_marginEnd="12dp"
+             />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="Presupuesto"
+            android:textColor="@color/black"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:text="Presupuesto Mensual"
+        android:gravity="center"
+        android:textColor="@color/black"
+        />
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/borde_naranja"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Presupuesto Total"
+                android:textSize="16sp"
+                />
+            <TextView
+                android:id="@+id/presupuestoTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:text="$25,000"
+                android:textStyle="bold"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginEnd="15dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gastado"
+                />
+            <TextView
+                android:id="@+id/gastado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$18,700"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Restante"
+                    />
+                <TextView
+                    android:id="@+id/restante"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$6,300"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/agregar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+ Agregar"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:backgroundTint="@color/naranja"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="end" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Categorias"
+        android:textColor="@color/white"
+        android:layout_marginStart="25dp"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        android:textSize="19sp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/borde_naranja"
+        android:padding="16dp"
+        android:layout_margin="16dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            >
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_food"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="Ícono de alimentación" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Alimentación"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="Agregar gasto" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:contentDescription="Editar categoría" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$5,200 / $8,000"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="4dp" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:progress="65"
+            android:max="100"
+            android:progressTint="@color/naranja"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="65%"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:layout_gravity="end"
+            android:layout_marginTop="4dp" />
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
