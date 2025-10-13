@@ -25,7 +25,11 @@ José Carlos Alcalá Ruíz - 180872 - [GitHub](https://github.com/JoseAlcala1808
 
 Jose Miguel Rodriguez Reyna - 216743 - [GitHub](https://github.com/JoMi21)
 
-Nombre Completo - Rol Principal - GitHub
+Angel De Jesus Santos Sarabia - 205750 - [GitHub](https://github.com/angeldeyisus)
+
+Chris Alberto Elizalde Andrade - 240005 - [GitHub](https://github.com/Crikz03)
+
+Nombre Completo - ID - GitHub
 
 
 
