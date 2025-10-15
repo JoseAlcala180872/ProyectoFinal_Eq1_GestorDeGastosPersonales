@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:background="#FFA500"
-    android:paddingVertical="16dp"
+    android:background="@color/naranjaBotones"
+    android:paddingVertical="10dp"
     android:gravity="center">
 
     <LinearLayout
@@ -20,8 +20,8 @@
 
         <ImageView
             android:id="@+id/iconHome"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@drawable/ic_iconhome" />
 
 
@@ -40,8 +40,9 @@
 
         <ImageView
             android:id="@+id/iconGasto"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+
             android:src="@drawable/ic_icongasto" />
 
     </LinearLayout>
@@ -59,8 +60,8 @@
 
         <ImageView
             android:id="@+id/iconIngreso"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@drawable/ic_iconingreso" />
 
     </LinearLayout>
@@ -78,8 +79,8 @@
 
         <ImageView
             android:id="@+id/iconPresupuesto"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@drawable/ic_iconpresupuesto" />
 
     </LinearLayout>
@@ -97,8 +98,8 @@
 
         <ImageView
             android:id="@+id/iconGraficos"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@drawable/ic_icongraficos"/>
 
     </LinearLayout>

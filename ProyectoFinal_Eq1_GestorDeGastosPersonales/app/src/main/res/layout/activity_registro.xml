@@ -7,14 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".Registro"
     android:orientation="vertical"
-    android:background="@color/rosa"
+    android:background="@color/moradoBackground"
     >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/moradoClaro"
+        android:background="@color/moradoHeader"
         android:gravity="center_vertical">
 
         <ImageView
@@ -27,11 +27,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Registro"
+            android:text="Registrarse"
             android:textSize="28sp"
             android:textColor="@color/black"
-            android:paddingLeft="50dp"
-            android:textStyle="bold"
+            android:fontFamily="@font/inter18ptbold"
+            android:paddingLeft="40dp"
             android:gravity="center" />
 
 
@@ -42,7 +42,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:paddingTop="50dp">
+        android:paddingTop="15dp">
 
     <TextView
         android:layout_width="wrap_content"
@@ -50,18 +50,24 @@
         android:text="Nombre(s):"
         android:textSize="18sp"
         android:textAlignment="center"
-        android:textStyle="italic"
+        android:fontFamily="@font/inter18ptitalic"
+        android:textColor="@color/black"
         android:layout_marginLeft="45dp"
         />
 
-    <EditText
-        android:id="@+id/etNombre"
-        android:layout_width="319dp"
-        android:layout_height="50dp"
-        android:hint="Dwayne"
-        android:background="@color/white"
-        android:layout_gravity="center_horizontal"
-        />
+        <EditText
+            android:id="@+id/etNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="45dp"
+            android:background="@drawable/borde_naranja"
+            android:hint="Dwayne"
+            android:padding="12dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/inter18ptregular"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -69,17 +75,24 @@
         android:text="Apellidos:"
         android:textSize="18sp"
         android:textAlignment="center"
-        android:textStyle="italic"
+        android:fontFamily="@font/inter18ptitalic"
+        android:textColor="@color/black"
         android:layout_marginLeft="45dp"
         />
 
     <EditText
         android:id="@+id/etApellido"
-        android:layout_width="319dp"
-        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:background="@drawable/borde_naranja"
         android:hint="Johnson"
-        android:background="@color/white"
-        android:layout_gravity="center_horizontal"
+        android:padding="12dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/inter18ptregular"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"
         />
 
     <TextView
@@ -88,18 +101,24 @@
         android:text="Correo:"
         android:textSize="18sp"
         android:textAlignment="center"
-        android:textStyle="italic"
+        android:fontFamily="@font/inter18ptitalic"
+        android:textColor="@color/black"
         android:layout_marginLeft="45dp"
         />
 
     <EditText
         android:id="@+id/etCorreo"
-        android:layout_width="319dp"
-        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:background="@drawable/borde_naranja"
+        android:padding="12dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/inter18ptregular"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"
         android:hint="ejemplo@dominio.com"
-        android:background="@color/white"
-        android:layout_gravity="center_horizontal"
-        android:inputType="textEmailAddress"
         />
 
     <TextView
@@ -108,17 +127,24 @@
         android:text="Contraseña:"
         android:textSize="18sp"
         android:textAlignment="center"
-        android:textStyle="italic"
+        android:fontFamily="@font/inter18ptitalic"
+        android:textColor="@color/black"
         android:layout_marginLeft="45dp"
         />
 
     <EditText
         android:id="@+id/etContraseña"
-        android:layout_width="319dp"
-        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:background="@drawable/borde_naranja"
+        android:padding="12dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/inter18ptregular"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"
         android:hint="*******"
-        android:background="@color/white"
-        android:layout_gravity="center_horizontal"
         android:inputType="textPassword"
         />
 
@@ -128,17 +154,24 @@
         android:text="Confirmar contraseña:"
         android:textSize="18sp"
         android:textAlignment="center"
-        android:textStyle="italic"
+        android:fontFamily="@font/inter18ptitalic"
+        android:textColor="@color/black"
         android:layout_marginLeft="45dp"
         />
 
     <EditText
         android:id="@+id/etConfirmarContraseña"
-        android:layout_width="319dp"
-        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:background="@drawable/borde_naranja"
+        android:padding="12dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/inter18ptregular"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"
         android:hint="*******"
-        android:background="@color/white"
-        android:layout_gravity="center_horizontal"
         android:inputType="textPassword"
         />
 
@@ -148,16 +181,24 @@
         android:text="Fecha de nacimiento:"
         android:textSize="18sp"
         android:textAlignment="center"
-        android:textStyle="italic"
+        android:fontFamily="@font/inter18ptitalic"
+        android:textColor="@color/black"
         android:layout_marginLeft="45dp"
         />
 
     <EditText
         android:id="@+id/etFechaNacimiento"
-        android:layout_width="319dp"
-        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:background="@drawable/borde_naranja"
+        android:padding="12dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/inter18ptregular"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"
         android:hint="DD/MM/AAAA"
-        android:background="@color/white"
         android:layout_gravity="center_horizontal"
         />
 
@@ -167,11 +208,11 @@
         android:layout_height="wrap_content"
         android:text="Registrarte"
         android:layout_gravity="center_horizontal"
-        android:backgroundTint="@color/naranja"
+        android:backgroundTint="@color/naranjaBotones"
         android:textColor="@color/black"
+        android:fontFamily="@font/inter18ptbold"
         android:textSize="18sp"
-   android:layout_marginTop="30dp"
-        android:textStyle="bold" />
+        />
 
     <ImageView
         android:layout_width="match_parent"

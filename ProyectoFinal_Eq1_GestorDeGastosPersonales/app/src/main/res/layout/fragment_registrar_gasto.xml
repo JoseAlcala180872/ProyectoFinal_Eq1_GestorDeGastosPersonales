@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/rosa"
+    android:background="@color/moradoBackground"
     tools:context=".fragments.gasto.RegistrarGastoFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/moradoClaro"
+        android:background="@color/moradoHeader"
         android:gravity="center_vertical">
 
         <ImageView
@@ -28,20 +28,20 @@
             android:text="Registrar Gasto"
             android:textSize="28sp"
             android:textColor="@color/black"
-            android:textStyle="bold"
+            android:fontFamily="@font/inter18ptbold"
             android:gravity="center_vertical" />
 
     </LinearLayout>
 
     <TextView
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="35dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Monto:"
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textAlignment="center"
-        android:textStyle="italic"
+        android:fontFamily="@font/inter18ptitalic"
         android:layout_marginLeft="45dp"
         />
 
@@ -54,6 +54,7 @@
         android:layout_marginLeft="45dp"
         android:padding="12dp"
         android:textColor="@color/black"
+        android:fontFamily="@font/inter18ptregular"
         android:layout_marginRight="45dp"
         android:textSize="16sp"
         android:layout_marginBottom="16dp"
@@ -67,7 +68,7 @@
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textAlignment="center"
-        android:textStyle="italic"
+        android:fontFamily="@font/inter18ptitalic"
         android:layout_marginLeft="45dp"
         />
 
@@ -81,6 +82,7 @@
         android:layout_marginLeft="45dp"
         android:layout_marginRight="45dp"
         android:textColor="@color/black"
+        android:fontFamily="@font/inter18ptregular"
         android:textSize="16sp"
         android:layout_marginBottom="16dp" />
 
@@ -91,7 +93,7 @@
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textAlignment="center"
-        android:textStyle="italic"
+        android:fontFamily="@font/inter18ptitalic"
         android:layout_marginLeft="45dp"
         />
 
@@ -105,6 +107,7 @@
         android:layout_marginRight="45dp"
         android:padding="12dp"
         android:textColor="@color/black"
+        android:fontFamily="@font/inter18ptregular"
         android:textSize="16sp"
         android:layout_marginBottom="16dp" />
 
@@ -115,7 +118,7 @@
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textAlignment="center"
-        android:textStyle="italic"
+        android:fontFamily="@font/inter18ptitalic"
         android:layout_marginLeft="45dp"
         />
 
@@ -129,6 +132,7 @@
         android:hint="Fecha"
         android:padding="12dp"
         android:textColor="@color/black"
+        android:fontFamily="@font/inter18ptregular"
         android:textSize="16sp"
         android:layout_marginBottom="16dp" />
 
@@ -139,7 +143,7 @@
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textAlignment="center"
-        android:textStyle="italic"
+        android:fontFamily="@font/inter18ptitalic"
         android:layout_marginLeft="45dp"
         />
 
@@ -153,6 +157,7 @@
         android:hint="Descripcion"
         android:padding="12dp"
         android:textColor="@color/black"
+        android:fontFamily="@font/inter18ptregular"
         android:textSize="16sp"
         android:inputType="textMultiLine"
         android:gravity="top"
@@ -167,9 +172,8 @@
         android:layout_gravity="center_horizontal"
         android:backgroundTint="@color/naranja"
         android:textColor="@color/black"
+        android:fontFamily="@font/inter18ptbold"
         android:textSize="20sp"
-        android:layout_marginTop="7dp"
-        android:textStyle="bold"
         />
 
     <ImageView
