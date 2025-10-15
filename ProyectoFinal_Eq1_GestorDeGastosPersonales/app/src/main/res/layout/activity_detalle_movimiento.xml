@@ -3,14 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main"
     android:orientation="vertical"
-    android:background="@color/rosa">
+    android:background="@color/moradoBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/moradoClaro"
+        android:background="@color/moradoHeader"
         android:gravity="center_vertical">
 
         <ImageView
@@ -27,7 +28,7 @@
             android:textSize="28sp"
             android:textColor="@color/black"
             android:paddingLeft="30dp"
-            android:textStyle="bold"
+            android:fontFamily="@font/inter18ptbold"
             android:gravity="center" />
 
 
@@ -69,8 +70,8 @@
             android:layout_height="wrap_content"
             android:text="-$850.00"
             android:textSize="42sp"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF"
+            android:fontFamily="@font/inter18ptbold"
+            android:textColor="@color/black"
             android:layout_marginBottom="16dp"/>
 
         <androidx.cardview.widget.CardView
@@ -266,8 +267,8 @@
                         android:layout_height="wrap_content"
                         android:text="✏️ Editar"
                         android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="#FFFFFF"/>
+                        android:fontFamily="@font/inter18ptbold"
+                        android:textColor="@color/black"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -295,7 +296,7 @@
                         android:layout_height="wrap_content"
                         android:text="🗑️ Eliminar"
                         android:textSize="16sp"
-                        android:textStyle="bold"
+                        android:fontFamily="@font/inter18ptbold"
                         android:textColor="#FFFFFF"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

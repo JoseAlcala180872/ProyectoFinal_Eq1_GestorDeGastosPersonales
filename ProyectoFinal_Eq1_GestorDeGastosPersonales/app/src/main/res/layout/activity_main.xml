@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:background="@color/rosa">
+    android:background="@color/moradoBackground">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/nutemu"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="100dp"
         />
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/imagefour"
         android:layout_gravity="center_horizontal"
@@ -35,8 +34,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Preparate para cuidar tu dinero de forma 'segura'"
+        android:text="Preparate para cuidar\ntu dinero de forma 'segura'"
         android:textSize="22sp"
+        android:textColor="@color/black"
+        android:paddingTop="10dp"
+        android:fontFamily="@font/inter18ptregular"
+        android:layout_gravity="center"
         android:textAlignment="center"
         />
 
@@ -46,31 +49,42 @@
         android:layout_height="wrap_content"
         android:text="Ingresar"
         android:layout_gravity="center_horizontal"
-        android:backgroundTint="@color/naranja"
+        android:backgroundTint="@color/naranjaBotones"
         android:textColor="@color/black"
         android:textSize="16sp"
+        android:fontFamily="@font/inter18ptbold"
         android:layout_marginTop="20dp"
         android:textStyle="bold"
         />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
         android:src="@drawable/imagethree"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:scaleType="center"
+        />
 
-
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/naranja">
+        android:padding="70dp"
+        android:gravity="center"
+        android:background="@drawable/fondo_naranja_redondo">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="¿Aun no te has registrado?"
             android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/inter18ptregular"
+            android:textColor="@color/black"
             android:textSize="15sp"/>
         <TextView
             android:id="@+id/registro"
@@ -78,10 +92,9 @@
             android:layout_height="wrap_content"
             android:text="Registrate"
             android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/inter18ptbold"
             android:textSize="16sp"
-            android:textStyle="bold"
             android:textColor="@color/morado"/>
     </LinearLayout>
-
 
 </LinearLayout>

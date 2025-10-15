@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/rosa"
+    android:background="@color/moradoBackground"
     tools:context=".graficas">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/moradoClaro"
+        android:background="@color/moradoHeader"
         android:gravity="center_vertical">
 
         <ImageView
@@ -86,7 +86,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="15sp"
-                android:textStyle="bold"
+                android:fontFamily="@font/inter18ptbold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -100,6 +100,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="15sp"
+                android:fontFamily="@font/inter18ptregular"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

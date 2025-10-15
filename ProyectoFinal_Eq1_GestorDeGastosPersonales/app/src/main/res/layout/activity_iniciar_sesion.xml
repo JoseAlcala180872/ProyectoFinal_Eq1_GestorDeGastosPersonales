@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:background="@color/rosa">
+    android:background="@color/moradoBackground">
 
     <TextView
         android:layout_width="wrap_content"
@@ -15,8 +15,9 @@
         android:text="Iniciar sesión"
         android:textSize="40sp"
         android:textColor="@color/black"
-        android:textStyle="bold"
-        android:layout_gravity="center_horizontal"/>
+        android:fontFamily="@font/inter18ptbold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="80dp"/>
 
     <ImageView
         android:layout_width="wrap_content"
@@ -30,7 +31,6 @@
         android:layout_height="142dp"
         android:src="@drawable/imagesix"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
         />
 
     <TextView
@@ -39,18 +39,25 @@
         android:text="Correo:"
         android:textSize="18sp"
         android:textAlignment="center"
-        android:textStyle="italic"
+        android:fontFamily="@font/inter18ptitalic"
+        android:textColor="@color/black"
         android:layout_marginLeft="45dp"
+        android:layout_marginTop="10dp"
         />
 
     <EditText
-        android:id="@+id/etCorreoInicio"
-        android:layout_width="319dp"
-        android:layout_height="50dp"
+        android:id="@+id/etCorreo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:background="@drawable/borde_naranja"
+        android:padding="12dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/inter18ptregular"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"
         android:hint="ejemplo@dominio.com"
-        android:background="@color/white"
-        android:layout_gravity="center_horizontal"
-        android:inputType="textEmailAddress"
         />
 
     <TextView
@@ -59,17 +66,24 @@
         android:text="Contraseña:"
         android:textSize="18sp"
         android:textAlignment="center"
-        android:textStyle="italic"
+        android:fontFamily="@font/inter18ptitalic"
+        android:textColor="@color/black"
         android:layout_marginLeft="45dp"
         />
 
     <EditText
-        android:id="@+id/etContraseñaInicio"
-        android:layout_width="319dp"
-        android:layout_height="50dp"
-        android:hint="******"
-        android:background="@color/white"
-        android:layout_gravity="center_horizontal"
+        android:id="@+id/etConfirmarContraseña"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:background="@drawable/borde_naranja"
+        android:padding="12dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/inter18ptregular"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"
+        android:hint="*******"
         android:inputType="textPassword"
         />
 
@@ -79,30 +93,42 @@
         android:layout_height="wrap_content"
         android:text="Ingresar"
         android:layout_gravity="center_horizontal"
-        android:backgroundTint="@color/naranja"
+        android:backgroundTint="@color/naranjaBotones"
         android:textColor="@color/black"
         android:textSize="16sp"
-        android:layout_marginTop="20dp"
-        android:textStyle="bold"/>
+        android:fontFamily="@font/inter18ptbold"/>
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
         android:src="@drawable/imagethree"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:scaleType="center"
+        />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/naranja">
+        android:padding="81.5dp"
+        android:gravity="center"
+        android:background="@drawable/fondo_naranja_redondo">
+
         <TextView
+            android:id="@+id/nav_olvideContra"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="¿Olvidaste tu contraseña?"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/inter18ptbold"
+            android:textColor="@color/morado"
             android:textSize="15sp"/>
-    </LinearLayout>
 
+    </LinearLayout>
 
 </LinearLayout>

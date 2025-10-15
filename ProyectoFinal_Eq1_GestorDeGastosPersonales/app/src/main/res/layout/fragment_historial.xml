@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/rosa">
+    android:background="@color/moradoBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/moradoClaro"
+        android:background="@color/moradoHeader"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="16dp">
@@ -29,6 +29,7 @@
             android:layout_marginStart="12dp"
             android:text="Nombre usuario"
             android:textColor="@color/black"
+            android:fontFamily="@font/inter18ptregular"
             android:textSize="18sp" />
 
         <ImageView
@@ -46,8 +47,8 @@
         android:text="Historial de movimientos"
         android:textAlignment="center"
         android:textSize="20sp"
-        android:textStyle="bold"
         android:textColor="@color/black"
+        android:fontFamily="@font/inter18ptbold"
         android:padding="16dp" />
 
     <androidx.recyclerview.widget.RecyclerView

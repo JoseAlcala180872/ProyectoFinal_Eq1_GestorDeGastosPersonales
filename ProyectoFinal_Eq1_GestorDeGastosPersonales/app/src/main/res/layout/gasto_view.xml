@@ -9,14 +9,14 @@
     android:layout_margin="2dp">
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:src="@drawable/transport_shuttle_24"
         android:layout_marginEnd="12dp" />
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="10dp"
         android:layout_height="wrap_content"
-        android:layout_weight="2"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <TextView
@@ -25,13 +25,14 @@
             android:layout_height="wrap_content"
             android:text="Transporte"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:fontFamily="@font/inter18ptbold" />
 
         <TextView
             android:id="@+id/fechaConcepto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="12/10/2025"
+            android:fontFamily="@font/inter18ptregular"
             android:textSize="14sp" />
     </LinearLayout>
     <TextView
@@ -41,7 +42,8 @@
         android:layout_weight="1"
         android:text="Tarjeta"
         android:textSize="14sp"
-        android:gravity="center_vertical"
+        android:fontFamily="@font/inter18ptregular"
+        android:gravity="center"
         android:layout_marginStart="8dp" />
     <TextView
         android:id="@+id/cantidadDinero"
@@ -50,7 +52,7 @@
         android:layout_weight="1"
         android:text="-$10,000"
         android:textSize="16sp"
-        android:textStyle="bold"
+        android:fontFamily="@font/inter18ptbold"
         android:gravity="center_vertical"
         android:layout_marginStart="8dp" />
 </LinearLayout>

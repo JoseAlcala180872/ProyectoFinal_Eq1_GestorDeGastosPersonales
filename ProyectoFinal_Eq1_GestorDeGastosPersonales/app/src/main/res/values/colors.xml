@@ -12,4 +12,7 @@
     <color name="azulClaro">#4ECDC4</color>
     <color name="grisClaro"></color>
 
+    <color name="moradoBackground">#A855F7</color>
+    <color name="naranjaBotones">#F59E0B</color>
+    <color name="moradoHeader">#8B5CF6</color>
 </resources>
