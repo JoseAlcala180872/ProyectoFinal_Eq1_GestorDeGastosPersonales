@@ -19,16 +19,16 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        var btnIngresar: Button = findViewById(R.id.btnIngresar)
-        var registro: TextView=findViewById(R.id.registro)
+        val btnIngresar: Button = findViewById(R.id.btnIngresar)
+        val registro: TextView=findViewById(R.id.registro)
 
         btnIngresar.setOnClickListener {
-            var intent: Intent= Intent(this, IniciarSesion::class.java)
+            val intent= Intent(this, IniciarSesion::class.java)
             startActivity(intent)
         }
 
         registro.setOnClickListener {
-            var intent: Intent= Intent(this, Registro::class.java)
+            val intent = Intent(this, Registro::class.java)
             startActivity(intent)
         }
     }
