@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "405974870969",
+    "project_id": "gestordegastos-d51f8",
+    "storage_bucket": "gestordegastos-d51f8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:405974870969:android:0ff480fb10118d0011e468",
+        "android_client_info": {
+          "package_name": "alcala.jose.proyectofinal_eq1_gestordegastospersonales"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZCtbJn9iyu4GgyWz6y8y-gXYNLH21EeM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
