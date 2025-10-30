@@ -27,7 +27,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Registrarse"
+            android:text="@string/registrarse"
             android:textSize="28sp"
             android:textColor="@color/black"
             android:fontFamily="@font/inter18ptbold"
@@ -47,7 +47,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nombre(s):"
+        android:text="@string/nombres"
         android:textSize="18sp"
         android:textAlignment="center"
         android:fontFamily="@font/inter18ptitalic"
@@ -62,7 +62,7 @@
             android:layout_marginLeft="45dp"
             android:layout_marginRight="45dp"
             android:background="@drawable/borde_naranja"
-            android:hint="Dwayne"
+            android:hint="@string/nombreEjemplo"
             android:padding="12dp"
             android:textColor="@color/black"
             android:fontFamily="@font/inter18ptregular"
@@ -72,7 +72,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Apellidos:"
+        android:text="@string/apellidos"
         android:textSize="18sp"
         android:textAlignment="center"
         android:fontFamily="@font/inter18ptitalic"
@@ -87,7 +87,7 @@
         android:layout_marginLeft="45dp"
         android:layout_marginRight="45dp"
         android:background="@drawable/borde_naranja"
-        android:hint="Johnson"
+        android:hint="@string/apellidoEjemplo"
         android:padding="12dp"
         android:textColor="@color/black"
         android:fontFamily="@font/inter18ptregular"
@@ -98,7 +98,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Correo:"
+        android:text="@string/correoTV"
         android:textSize="18sp"
         android:textAlignment="center"
         android:fontFamily="@font/inter18ptitalic"
@@ -118,13 +118,13 @@
         android:fontFamily="@font/inter18ptregular"
         android:textSize="16sp"
         android:layout_marginBottom="16dp"
-        android:hint="ejemplo@dominio.com"
+        android:hint="@string/ejemploCorreo"
         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Contraseña:"
+        android:text="@string/contra"
         android:textSize="18sp"
         android:textAlignment="center"
         android:fontFamily="@font/inter18ptitalic"
@@ -151,7 +151,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Confirmar contraseña:"
+        android:text="@string/confirmarContra"
         android:textSize="18sp"
         android:textAlignment="center"
         android:fontFamily="@font/inter18ptitalic"
@@ -178,7 +178,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fecha de nacimiento:"
+        android:text="@string/fechaNacimiento"
         android:textSize="18sp"
         android:textAlignment="center"
         android:fontFamily="@font/inter18ptitalic"
@@ -198,7 +198,7 @@
         android:fontFamily="@font/inter18ptregular"
         android:textSize="16sp"
         android:layout_marginBottom="16dp"
-        android:hint="DD/MM/AAAA"
+        android:hint="@string/formatoNacimiento"
         android:layout_gravity="center_horizontal"
         />
 
@@ -206,7 +206,7 @@
         android:id="@+id/btnRegistrarGasto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registrarte"
+        android:text="@string/registrarte"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="@color/naranjaBotones"
         android:textColor="@color/black"

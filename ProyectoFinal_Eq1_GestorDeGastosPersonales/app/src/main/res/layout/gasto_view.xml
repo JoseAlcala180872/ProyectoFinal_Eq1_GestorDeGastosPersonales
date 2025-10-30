@@ -23,7 +23,7 @@
             android:id="@+id/concepto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Transporte"
+            android:text="@string/transporte_view"
             android:textSize="16sp"
             android:fontFamily="@font/inter18ptbold" />
 
@@ -31,7 +31,7 @@
             android:id="@+id/fechaConcepto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="12/10/2025"
+            android:text="@string/fecha_view"
             android:fontFamily="@font/inter18ptregular"
             android:textSize="14sp" />
     </LinearLayout>
@@ -40,7 +40,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Tarjeta"
+        android:text="@string/tarjeta_view"
         android:textSize="14sp"
         android:fontFamily="@font/inter18ptregular"
         android:gravity="center"
@@ -50,7 +50,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="-$10,000"
+        android:text="@string/monto_view"
         android:textSize="16sp"
         android:fontFamily="@font/inter18ptbold"
         android:gravity="center_vertical"

@@ -25,7 +25,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Graficas"
+            android:text="@string/graficas"
             android:paddingLeft="55dp"
             android:textSize="28sp"
             android:textColor="@color/black"
@@ -46,7 +46,7 @@
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Mayo 2025     >"
+            android:text="@string/mayo_2025"
             android:textColor="@color/black"
             android:backgroundTint="@color/white"
             android:layout_gravity="bottom"/>
@@ -58,7 +58,7 @@
             android:backgroundTint="@color/white"
             android:textColor="@color/black"
             android:gravity="center"
-            android:text="Todas        >"
+            android:text="@string/todas"
             android:layout_marginStart="90dp"/>
 
     </LinearLayout>
