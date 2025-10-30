@@ -12,7 +12,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Iniciar sesión"
+        android:text="@string/iniciar_sesi_n"
         android:textSize="40sp"
         android:textColor="@color/black"
         android:fontFamily="@font/inter18ptbold"
@@ -36,7 +36,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Correo:"
+        android:text="@string/correo"
         android:textSize="18sp"
         android:textAlignment="center"
         android:fontFamily="@font/inter18ptitalic"
@@ -57,13 +57,13 @@
         android:fontFamily="@font/inter18ptregular"
         android:textSize="16sp"
         android:layout_marginBottom="16dp"
-        android:hint="ejemplo@dominio.com"
+        android:hint="@string/ejemplo_dominio_com"
         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Contraseña:"
+        android:text="@string/contrase_a"
         android:textSize="18sp"
         android:textAlignment="center"
         android:fontFamily="@font/inter18ptitalic"
@@ -91,7 +91,7 @@
         android:id="@+id/btnIngresarInicio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ingresar"
+        android:text="@string/ingresar"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="@color/naranjaBotones"
         android:textColor="@color/black"
@@ -123,7 +123,7 @@
             android:id="@+id/nav_olvideContra"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="¿Olvidaste tu contraseña?"
+            android:text="@string/contraOlvidada"
             android:layout_gravity="center_horizontal"
             android:fontFamily="@font/inter18ptbold"
             android:textColor="@color/morado"

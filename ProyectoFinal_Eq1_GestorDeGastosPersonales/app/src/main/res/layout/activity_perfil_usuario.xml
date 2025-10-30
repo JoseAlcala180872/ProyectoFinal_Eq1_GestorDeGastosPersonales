@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Perfil"
+            android:text="@string/perfil"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -37,7 +37,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Configuración"
+        android:text="@string/configuracion"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="28sp"
@@ -94,7 +94,7 @@
                     android:id="@+id/tvUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Persona Random"
+                    android:text="@string/persona_random"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:fontFamily="@font/inter18ptbold" />
@@ -104,7 +104,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Random23@gmail.com"
+                    android:text="@string/correoRandom"
                     android:textColor="#666666"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -114,7 +114,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Información Personal"
+        android:text="@string/informacion_personal"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:fontFamily="@font/inter18ptbold"
@@ -139,7 +139,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nombre completo"
+                android:text="@string/nombre_completo"
                 android:textColor="#666666"
                 android:textSize="11sp" />
 
@@ -155,7 +155,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_toStartOf="@+id/btnEditName"
                     android:background="@android:color/transparent"
-                    android:text="Persona Random"
+                    android:text="@string/persona_random2"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     android:padding="0dp" />
@@ -181,7 +181,7 @@
                 android:paddingTop="3dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="3dp"
-                android:text="Guardar cambios"
+                android:text="@string/guardar_cambios"
                 android:textColor="#999999"
                 android:textSize="10sp" />
         </LinearLayout>
@@ -248,7 +248,7 @@
                 android:paddingTop="3dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="3dp"
-                android:text="Guardar cambios"
+                android:text="@string/guardar_cambios"
                 android:textColor="#999999"
                 android:textSize="10sp" />
         </LinearLayout>
@@ -326,7 +326,7 @@
                 android:paddingTop="3dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="3dp"
-                android:text="Cambiar contraseña"
+                android:text="@string/cambiar_contra"
                 android:textColor="#999999"
                 android:textSize="10sp" />
         </LinearLayout>
@@ -354,7 +354,7 @@
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
             android:shadowRadius="@integer/material_motion_duration_long_1"
-            android:text="Cerrar sesión"
+            android:text="@string/cerrar_sesion"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:fontFamily="@font/inter18ptbold" />

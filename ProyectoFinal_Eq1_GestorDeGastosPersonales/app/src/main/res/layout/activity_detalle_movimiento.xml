@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Detalles\nMovimientos"
+            android:text="@string/detalles_movimientos"
             android:textSize="28sp"
             android:textColor="@color/black"
             android:paddingLeft="30dp"
@@ -68,7 +68,7 @@
             android:id="@+id/tvMonto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="-$850.00"
+            android:text="@string/gasto_dinero"
             android:textSize="42sp"
             android:fontFamily="@font/inter18ptbold"
             android:textColor="@color/black"
@@ -92,7 +92,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Información"
+                    android:text="@string/informacion"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="#000000"
@@ -108,7 +108,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Categoría"
+                        android:text="@string/categoria_detalle_movimiento"
                         android:textSize="15sp"
                         android:textColor="#666666"/>
 
@@ -116,7 +116,7 @@
                         android:id="@+id/tvCategoria"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Alimentación"
+                        android:text="@string/alimentacion"
                         android:textSize="15sp"
                         android:textStyle="bold"
                         android:textColor="#000000"/>
@@ -138,7 +138,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Fecha"
+                        android:text="@string/fecha"
                         android:textSize="15sp"
                         android:textColor="#666666"/>
 
@@ -146,7 +146,7 @@
                         android:id="@+id/tvFechaMovimiento"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="10 Mayo 1999"
+                        android:text="@string/fecha_formato"
                         android:textSize="15sp"
                         android:textStyle="bold"
                         android:textColor="#000000"/>
@@ -168,7 +168,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Hora"
+                        android:text="@string/hora"
                         android:textSize="15sp"
                         android:textColor="#666666"/>
 
@@ -176,7 +176,7 @@
                         android:id="@+id/tvHoraMovimiento"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="14:30 PM"
+                        android:text="@string/hora_movimiento"
                         android:textSize="15sp"
                         android:textStyle="bold"
                         android:textColor="#000000"/>
@@ -198,7 +198,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Método de pago"
+                        android:text="@string/metodo_de_pago"
                         android:textSize="15sp"
                         android:textColor="#666666"/>
 
@@ -206,7 +206,7 @@
                         android:id="@+id/tvMetodoPago"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Efectivo"
+                        android:text="@string/efectivo"
                         android:textSize="15sp"
                         android:textStyle="bold"
                         android:textColor="#000000"/>
@@ -221,7 +221,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Descripción"
+                    android:text="@string/descripcion"
                     android:textSize="15sp"
                     android:textColor="#666666"
                     android:layout_marginBottom="6dp"/>
@@ -230,7 +230,7 @@
                     android:id="@+id/tvDescripcion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Compra semanal de despensa para sobrevivir pipipi"
+                    android:text="@string/descripcion_movimiento"
                     android:textSize="14sp"
                     android:textColor="#000000"
                     android:lineSpacingExtra="2dp"/>
@@ -265,7 +265,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="✏️ Editar"
+                        android:text="@string/btn_editar"
                         android:textSize="16sp"
                         android:fontFamily="@font/inter18ptbold"
                         android:textColor="@color/black"/>
@@ -294,7 +294,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="🗑️ Eliminar"
+                        android:text="@string/btn_eliminar"
                         android:textSize="16sp"
                         android:fontFamily="@font/inter18ptbold"
                         android:textColor="#FFFFFF"/>

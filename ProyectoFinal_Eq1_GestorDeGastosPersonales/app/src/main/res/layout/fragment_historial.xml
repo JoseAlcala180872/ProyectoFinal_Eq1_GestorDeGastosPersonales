@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text="Nombre usuario"
+            android:text="@string/nombre_usuario"
             android:textColor="@color/black"
             android:fontFamily="@font/inter18ptregular"
             android:textSize="18sp" />
@@ -44,7 +44,7 @@
         android:id="@+id/transaction_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Historial de movimientos"
+        android:text="@string/historial_de_movimientos"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textColor="@color/black"

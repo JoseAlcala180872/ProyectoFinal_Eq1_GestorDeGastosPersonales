@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:text="Presupuesto"
+            android:text="@string/presupuesto"
             android:paddingLeft="30dp"
             android:textColor="@color/black"
             android:textSize="28sp"
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/inter18ptbold"
         android:textSize="24sp"
-        android:text="Presupuesto Mensual"
+        android:text="@string/presupuesto_mensual"
         android:gravity="center"
         android:textColor="@color/black"
         />
@@ -64,7 +64,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Presupuesto Total"
+                android:text="@string/presupuesto_total"
                 android:textSize="14sp"
                 android:textColor="@color/black"
                 android:fontFamily="@font/inter18ptregular"/>
@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="32sp"
-                android:text="$25,000"
+                android:text="@string/presupuesto_dinero"
                 android:fontFamily="@font/inter18ptbold"
                 android:textColor="@color/morado"/>
         </LinearLayout>
@@ -88,7 +88,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Gastado"
+                android:text="@string/gastado"
                 android:textSize="12sp"
                 android:textColor="@color/gris"/>
 
@@ -96,7 +96,7 @@
                 android:id="@+id/gastado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="$18,700"
+                android:text="@string/gastado_dinero"
                 android:textSize="18sp"
                 android:fontFamily="@font/inter18ptbold"
                 android:textColor="@color/rojoClaro"/>
@@ -107,7 +107,7 @@
                 android:layout_marginTop="4dp"
                 android:textSize="12sp"
                 android:textColor="@color/azulClaro"
-                android:text="Restante: $6,300"/>
+                android:text="@string/restante_ejemplo"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -115,7 +115,7 @@
         android:id="@+id/agregar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="+ Agregar"
+        android:text="@string/btn_agregar"
         android:textColor="@color/black"
         android:fontFamily="@font/inter18ptbold"
         android:backgroundTint="@color/naranja"
@@ -128,7 +128,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Categorias"
+        android:text="@string/categorias"
         android:textColor="@color/black"
         android:layout_marginStart="25dp"
         android:fontFamily="@font/inter18ptbold"
@@ -175,7 +175,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Alimentación"
+                        android:text="@string/alimentacion"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="@color/black"/>
@@ -187,7 +187,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="$"
+                            android:text="@string/signo_dinero"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp"
@@ -197,7 +197,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="14sp"
-                            android:text="5,200"
+                            android:text="@string/cincomildoscientos"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp"
                             android:layout_marginBottom="8dp"
@@ -213,7 +213,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="$"
+                            android:text="@string/signo_dinero"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp"
@@ -222,7 +222,7 @@
                             android:id="@+id/txtCantidadTotalAlimentacion"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="8,000"
+                            android:text="@string/ochomil"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp"
@@ -267,7 +267,7 @@
                     android:id="@+id/txtPorcentaje"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="65%"
+                    android:text="@string/porcentaje"
                     android:textSize="11sp"
                     android:textStyle="bold"
                     android:textColor="@color/white"
