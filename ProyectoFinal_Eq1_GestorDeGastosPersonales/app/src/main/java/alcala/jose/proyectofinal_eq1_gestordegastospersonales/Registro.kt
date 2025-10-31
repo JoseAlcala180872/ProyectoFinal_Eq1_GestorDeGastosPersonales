@@ -30,12 +30,9 @@ class Registro : AppCompatActivity() {
         }
 
         auth = Firebase.auth
-        val nombre: EditText = findViewById(R.id.etNombre)
-        val apellido: EditText = findViewById(R.id.etApellido)
         val correo: EditText = findViewById(R.id.etCorreo)
         val contraseña: EditText = findViewById(R.id.etContraseña)
         val confirmarContraseña: EditText = findViewById(R.id.etConfirmarContraseña)
-        val fechaNacimiento: EditText = findViewById(R.id.etFechaNacimiento)
         val botonRegistro: Button = findViewById(R.id.btnRegistrarGasto)
 
         botonRegistro.setOnClickListener {
@@ -55,7 +52,6 @@ class Registro : AppCompatActivity() {
                 ).show()
             }else {
                 registrarse(correo.text.toString(), contraseña.text.toString())
-                guardarUsuario()
             }
         }
     }
@@ -66,6 +62,10 @@ class Registro : AppCompatActivity() {
             if (task.isSuccessful) {
                 Log.d("INFO", "RegistroConCorreo:exitoso")
                 val usuario = auth.currentUser
+                val uid = usuario?.uid
+                if (uid != null) {
+                    guardarUsuario(uid)
+                }
                 val intent = Intent(this, IniciarSesion::class.java)
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
@@ -80,7 +80,7 @@ class Registro : AppCompatActivity() {
         }
     }
 
-    private fun guardarUsuario() {
+    private fun guardarUsuario(uid: String) {
         val nombre: EditText = findViewById(R.id.etNombre)
         val apellido: EditText = findViewById(R.id.etApellido)
         val correo: EditText = findViewById(R.id.etCorreo)
@@ -92,7 +92,7 @@ class Registro : AppCompatActivity() {
             correo.text.toString(),
             fechaNacimiento.text.toString()
         )
-        usuarioRef.push().setValue(usuario)
+        usuarioRef.child(uid).setValue(usuario)
     }
 
     fun verificarCampos(): Boolean {
