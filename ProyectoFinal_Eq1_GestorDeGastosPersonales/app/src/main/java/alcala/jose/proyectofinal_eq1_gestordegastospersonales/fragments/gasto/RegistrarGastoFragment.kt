@@ -6,6 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.R
+import alcala.jose.proyectofinal_eq1_gestordegastospersonales.entidades.MetodoPago
+import alcala.jose.proyectofinal_eq1_gestordegastospersonales.entidades.Movimiento
+import alcala.jose.proyectofinal_eq1_gestordegastospersonales.entidades.TipoMovimiento
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -19,42 +30,98 @@ private const val ARG_PARAM2 = "param2"
  */
 class RegistrarGastoFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var montoGasto: EditText
+    private lateinit var categoria: EditText
+    private lateinit var tipoPago: EditText
+    private lateinit var fechaGasto: EditText
+    private lateinit var descripcionGasto: EditText
+    private lateinit var btnRegistrar: Button
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private val db = FirebaseDatabase.getInstance().getReference("movimientos")
+    private val auth = FirebaseAuth.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_registrar_gasto, container, false)
+        val view = inflater.inflate(R.layout.fragment_registrar_gasto, container, false)
+
+        montoGasto = view.findViewById(R.id.montoGasto)
+        categoria = view.findViewById(R.id.categoria)
+        tipoPago = view.findViewById(R.id.tipoPago)
+        fechaGasto = view.findViewById(R.id.fechaGasto)
+        descripcionGasto = view.findViewById(R.id.descripcionGasto)
+        btnRegistrar = view.findViewById(R.id.btnRegistrarGasto)
+
+        btnRegistrar.setOnClickListener {
+            registrarGasto()
+        }
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment RegistrarGastoFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            RegistrarGastoFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+
+    private fun registrarGasto() {
+        val user = auth.currentUser
+        if (user == null) {
+            Toast.makeText(requireContext(), "Debes iniciar sesión primero", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val montoStr = montoGasto.text.toString().trim()
+        val categoriaStr = categoria.text.toString().trim()
+        val tipoPagoStr = tipoPago.text.toString().trim()
+        val fechaStr = fechaGasto.text.toString().trim()
+        val descripcionStr = descripcionGasto.text.toString().trim()
+
+        if (montoStr.isEmpty() || categoriaStr.isEmpty() || tipoPagoStr.isEmpty() ||
+            fechaStr.isEmpty() || descripcionStr.isEmpty()) {
+            Toast.makeText(requireContext(), "Por favor completa todos los campos", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val monto = montoStr.toDoubleOrNull()
+        if (monto == null || monto <= 0) {
+            Toast.makeText(requireContext(), "Monto inválido", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val metodoPago = when (tipoPagoStr.lowercase(Locale.ROOT)) {
+            "tarjeta" -> MetodoPago.TARJETA
+            "efectivo" -> MetodoPago.EFECTIVO
+            else -> MetodoPago.EFECTIVO
+        }
+
+        val horaActual = SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date())
+
+        val movimientoId = db.child(user.uid).push().key ?: return
+
+        val movimiento = Movimiento(
+            descripcion = descripcionStr,
+            categoria = categoriaStr,
+            monto = monto,
+            fecha = fechaStr,
+            hora = horaActual,
+            tipo = TipoMovimiento.GASTO,
+            metodoPago = metodoPago
+        )
+
+        db.child(user.uid).child(movimientoId)
+            .setValue(movimiento)
+            .addOnSuccessListener {
+                Toast.makeText(requireContext(), "Gasto registrado correctamente", Toast.LENGTH_SHORT).show()
+                limpiarCampos()
             }
+            .addOnFailureListener { e ->
+                Toast.makeText(requireContext(), "Error al registrar gasto: ${e.message}", Toast.LENGTH_LONG).show()
+            }
+    }
+
+    private fun limpiarCampos() {
+        montoGasto.text.clear()
+        categoria.text.clear()
+        tipoPago.text.clear()
+        fechaGasto.text.clear()
+        descripcionGasto.text.clear()
     }
 }

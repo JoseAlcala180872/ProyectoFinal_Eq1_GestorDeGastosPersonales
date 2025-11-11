@@ -42,18 +42,29 @@ class MovimientoAdapter(private var movimientos: List<Movimiento>,
         private var tvMetodoPago: TextView = itemView.findViewById(R.id.metodoPago)
         private val tvMonto: TextView = itemView.findViewById(R.id.cantidadDinero)
 
+        private fun obtenerIconoPorCategoria(categoria: String?): Int {
+            return when (categoria?.lowercase()) {
+                "alimentación", "alimentacion" -> R.drawable.ic_food
+                "entretenimiento" -> R.drawable.ic_launcher_background
+                "transporte" -> R.drawable.ic_launcher_background
+                "vivienda" -> R.drawable.ic_launcher_background
+                "salud" -> R.drawable.ic_launcher_background
+                "otros" -> R.drawable.ic_launcher_background
+                else -> R.drawable.ic_launcher_background
+            }
+        }
+
         fun bind(movimiento: Movimiento) {
             tvFecha.text = movimiento.fecha
             tvCategoria.text = movimiento.categoria
-            tvMonto.text = movimiento.getMontoFormateado()
+            tvMonto.text = movimiento.montoFormateado
             tvMetodoPago.text = when (movimiento.metodoPago) {
                 MetodoPago.TARJETA -> "Tarjeta"
                 MetodoPago.EFECTIVO -> "Efectivo"
             }
 
-            if (movimiento.iconoRes != 0) {
-                ivIcono.setImageResource(movimiento.iconoRes)
-            }
+            val icono = obtenerIconoPorCategoria(movimiento.categoria)
+            ivIcono.setImageResource(icono)
 
             val colorRes = if (movimiento.esIngreso()) {
                 R.color.azulClaro

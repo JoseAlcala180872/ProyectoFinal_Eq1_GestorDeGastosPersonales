@@ -18,6 +18,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,18 +38,10 @@ class HistorialFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: MovimientoAdapter
-
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var userNameTextView: TextView
+    private val auth = FirebaseAuth.getInstance()
+    private val dbMovimientos = FirebaseDatabase.getInstance().getReference("movimientos")
+    private val dbUsuarios = FirebaseDatabase.getInstance().getReference("usuarios")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,48 +49,24 @@ class HistorialFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_historial, container, false)
 
-        setupUserIconClick(view)
+        setupUserHeader(view)
+        setupRecyclerView(view)
+        cargarUsuarioActual()
+        cargarMovimientosUsuario()
 
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        setupRecyclerView(view)
-        cargarMovimientosDePrueba()
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HistorialFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HistorialFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
-
-    private fun setupUserIconClick(view: View) {
+    private fun setupUserHeader(view: View) {
         val iconUser: ImageView = view.findViewById(R.id.nav_configuracion)
+        userNameTextView = view.findViewById(R.id.user_name)
 
         iconUser.setOnClickListener {
             val intent = Intent(requireContext(), PerfilUsuario::class.java)
             startActivity(intent)
         }
 
-        val userName: TextView = view.findViewById(R.id.user_name)
-        userName.setOnClickListener {
+        userNameTextView.setOnClickListener {
             val intent = Intent(requireContext(), PerfilUsuario::class.java)
             startActivity(intent)
         }
@@ -102,41 +75,67 @@ class HistorialFragment : Fragment() {
     private fun setupRecyclerView(view: View) {
         recyclerView = view.findViewById(R.id.transaction_list)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
         adapter = MovimientoAdapter(emptyList()) { movimiento ->
             val intent = Intent(requireContext(), DetalleMovimiento::class.java)
             intent.putExtra("movimiento", movimiento)
             startActivity(intent)
         }
-
         recyclerView.adapter = adapter
     }
 
-    private fun cargarMovimientosDePrueba() {
-        val movimientos = listOf(
-            Movimiento(
-                id = 1,
-                descripcion = "Este movimiento es pq tenia hambre bro T.T",
-                categoria = "Alimentación",
-                monto = 500.00,
-                fecha = "10/05/25",
-                hora = "14:30",
-                tipo = TipoMovimiento.GASTO,
-                metodoPago = MetodoPago.EFECTIVO,
-                iconoRes = R.drawable.ic_add_24
-            ),Movimiento(
-                id = 2,
-                descripcion = "Este movimiento es pq ya me quedare sin comida denuevo bro T.T",
-                categoria = "Alimentación",
-                monto = 85000000.00,
-                fecha = "10/20/25",
-                hora = "14:30",
-                tipo = TipoMovimiento.INGRESO,
-                metodoPago = MetodoPago.TARJETA,
-                iconoRes = R.drawable.ic_add_24
-            )
-        )
 
-        adapter.actualizarMovimientos(movimientos)
+    private fun cargarUsuarioActual() {
+        val user = auth.currentUser
+        if (user == null) {
+            userNameTextView.text = "Invitado"
+            return
+        }
+
+        dbUsuarios.child(user.uid).get()
+            .addOnSuccessListener { snapshot ->
+                if (snapshot.exists()) {
+                    val nombre = snapshot.child("nombre").value?.toString() ?: "Usuario"
+                    val apellido = snapshot.child("apellido").value?.toString() ?: ""
+                    userNameTextView.text = "$nombre $apellido"
+                } else {
+                    userNameTextView.text = "Usuario"
+                }
+            }
+            .addOnFailureListener {
+                userNameTextView.text = "Usuario"
+            }
+    }
+
+    private fun cargarMovimientosUsuario() {
+        val user = auth.currentUser
+        if (user == null) {
+            Toast.makeText(requireContext(), "Debes iniciar sesión primero", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val movimientosRef = dbMovimientos.child(user.uid)
+        movimientosRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val listaMovimientos = mutableListOf<Movimiento>()
+
+                for (movSnapshot in snapshot.children) {
+                    val movimiento = movSnapshot.getValue(Movimiento::class.java)
+                    if (movimiento != null) {
+                        listaMovimientos.add(movimiento)
+                    }
+                }
+
+                if (listaMovimientos.isEmpty()) {
+                    Toast.makeText(requireContext(), "No tienes movimientos registrados", Toast.LENGTH_SHORT).show()
+                }
+
+                val ordenados = listaMovimientos.sortedByDescending { it.fecha }
+                adapter.actualizarMovimientos(ordenados)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(requireContext(), "Error al cargar movimientos: ${error.message}", Toast.LENGTH_LONG).show()
+            }
+        })
     }
 }

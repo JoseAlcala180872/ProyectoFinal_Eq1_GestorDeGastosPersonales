@@ -7,38 +7,46 @@
     android:orientation="vertical"
     android:background="@color/moradoBackground">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/moradoHeader"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="16dp">
+        android:background="@color/moradoHeader">
 
         <ImageView
             android:id="@+id/nav_configuracion"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:layout_marginStart="16dp"
             android:src="@drawable/ic_iconperfil"
-             />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
             android:id="@+id/user_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="16dp"
             android:text="@string/nombre_usuario"
             android:textColor="@color/black"
             android:fontFamily="@font/inter18ptregular"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/nav_configuracion"
+            app:layout_constraintEnd_toStartOf="@id/logo_nt"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0"/>
 
         <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:id="@+id/logo_nt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/imagesix"
-            android:layout_marginLeft="120dp"
-            android:contentDescription="Logo NT" />
-    </LinearLayout>
+            android:contentDescription="Logo NT"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/transaction_title"
@@ -58,5 +66,4 @@
         android:layout_weight="1"
         android:padding="8dp"
         android:scrollbars="vertical" />
-
 </LinearLayout>

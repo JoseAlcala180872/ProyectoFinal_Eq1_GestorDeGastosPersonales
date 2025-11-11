@@ -31,7 +31,7 @@ class DetalleMovimiento : AppCompatActivity() {
             val tvMetodoPago: TextView = findViewById(R.id.tvMetodoPago)
             val tvDescripcion: TextView = findViewById(R.id.tvDescripcion)
 
-            tvMonto.text = movimiento.getMontoFormateado()
+            tvMonto.text = movimiento.montoFormateado
             tvCategoria.text = movimiento.categoria
             tvFecha.text = movimiento.fecha
             tvHora.text = movimiento.hora
@@ -41,9 +41,20 @@ class DetalleMovimiento : AppCompatActivity() {
             }
             tvDescripcion.text = movimiento.descripcion
 
-            if (movimiento.iconoRes != 0) {
-                ivIcono.setImageResource(movimiento.iconoRes)
-            }
+            val icono = obtenerIconoPorCategoria(movimiento.categoria)
+            ivIcono.setImageResource(icono)
+        }
+    }
+
+    private fun obtenerIconoPorCategoria(categoria: String?): Int {
+        return when (categoria?.lowercase()) {
+            "alimentación", "alimentacion" -> R.drawable.ic_food
+            "entretenimiento" -> R.drawable.ic_launcher_background
+            "transporte" -> R.drawable.ic_launcher_background
+            "vivienda" -> R.drawable.ic_launcher_background
+            "salud" -> R.drawable.ic_launcher_background
+            "otros" -> R.drawable.ic_launcher_background
+            else -> R.drawable.ic_launcher_background
         }
     }
 }

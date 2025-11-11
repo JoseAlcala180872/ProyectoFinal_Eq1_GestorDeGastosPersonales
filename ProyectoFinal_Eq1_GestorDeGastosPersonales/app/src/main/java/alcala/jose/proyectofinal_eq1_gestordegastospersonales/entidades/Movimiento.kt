@@ -1,35 +1,30 @@
 package alcala.jose.proyectofinal_eq1_gestordegastospersonales.entidades
 
+import alcala.jose.proyectofinal_eq1_gestordegastospersonales.R
+import com.google.firebase.database.Exclude
 import java.io.Serializable
 
 
 data class Movimiento(
-    val id: Int,
-    val descripcion: String,
-    val categoria: String,
-    val monto: Double,
-    val fecha: String,
-    val hora: String,
-    val tipo: TipoMovimiento, // GASTO o INGRESO
-    val metodoPago: MetodoPago,
-    val iconoRes: Int = 0 // Recurso del icono
+    var descripcion: String? = null,
+    var categoria: String? = null,
+    var monto: Double = 0.0,
+    var fecha: String? = null,
+    var hora: String? = null,
+    var tipo: TipoMovimiento = TipoMovimiento.GASTO,
+    var metodoPago: MetodoPago = MetodoPago.EFECTIVO,
+    @get:Exclude var iconoRes: Int = 0
 ) : Serializable {
 
-    fun getMontoFormateado(): String {
-        return if (tipo == TipoMovimiento.INGRESO) {
+    @get:Exclude
+    val montoFormateado: String
+        get() = if (tipo == TipoMovimiento.INGRESO)
             String.format("+$%,.2f", monto)
-        } else {
+        else
             String.format("-$%,.2f", monto)
-        }
-    }
 
-    fun getCategoriaYHora(): String {
-        return "$categoria • $hora"
-    }
 
-    fun esIngreso(): Boolean {
-        return tipo == TipoMovimiento.INGRESO
-    }
+    fun esIngreso(): Boolean = tipo == TipoMovimiento.INGRESO
 }
 
 enum class TipoMovimiento {

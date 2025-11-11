@@ -30,9 +30,12 @@ class Registro : AppCompatActivity() {
         }
 
         auth = Firebase.auth
+        val nombre: EditText = findViewById(R.id.etNombre)
+        val apellido: EditText = findViewById(R.id.etApellido)
         val correo: EditText = findViewById(R.id.etCorreo)
         val contraseña: EditText = findViewById(R.id.etContraseña)
         val confirmarContraseña: EditText = findViewById(R.id.etConfirmarContraseña)
+        val fechaNacimiento: EditText = findViewById(R.id.etFechaNacimiento)
         val botonRegistro: Button = findViewById(R.id.btnRegistrarGasto)
 
         botonRegistro.setOnClickListener {
@@ -61,15 +64,12 @@ class Registro : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(correo, contraseña).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
                 Log.d("INFO", "RegistroConCorreo:exitoso")
+                guardarUsuario()
                 val usuario = auth.currentUser
-                val uid = usuario?.uid
-                if (uid != null) {
-                    guardarUsuario(uid)
-                }
                 val intent = Intent(this, IniciarSesion::class.java)
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
-            }else {
+            } else {
                 Log.w("ERROR", "RegistroConCorreo:falló", task.exception)
                 Toast.makeText(
                     baseContext,
@@ -80,7 +80,7 @@ class Registro : AppCompatActivity() {
         }
     }
 
-    private fun guardarUsuario(uid: String) {
+    private fun guardarUsuario() {
         val nombre: EditText = findViewById(R.id.etNombre)
         val apellido: EditText = findViewById(R.id.etApellido)
         val correo: EditText = findViewById(R.id.etCorreo)
@@ -92,7 +92,19 @@ class Registro : AppCompatActivity() {
             correo.text.toString(),
             fechaNacimiento.text.toString()
         )
-        usuarioRef.child(uid).setValue(usuario)
+
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            usuarioRef.child(currentUser.uid).setValue(usuario)
+                .addOnSuccessListener {
+                    Log.d("INFO", "Usuario guardado correctamente con UID: ${currentUser.uid}")
+                }
+                .addOnFailureListener { e ->
+                    Log.w("ERROR", "Error al guardar usuario", e)
+                }
+        } else {
+            Log.w("ERROR", "No hay usuario autenticado")
+        }
     }
 
     fun verificarCampos(): Boolean {
