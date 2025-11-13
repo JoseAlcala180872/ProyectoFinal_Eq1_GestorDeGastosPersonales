@@ -54,6 +54,7 @@ class DetalleMovimiento : AppCompatActivity() {
             "vivienda" -> R.drawable.ic_launcher_background
             "salud" -> R.drawable.ic_launcher_background
             "otros" -> R.drawable.ic_launcher_background
+            "ingreso" -> R.drawable.ic_incomes
             else -> R.drawable.ic_launcher_background
         }
     }
