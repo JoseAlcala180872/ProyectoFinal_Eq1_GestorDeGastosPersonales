@@ -2,6 +2,7 @@ package alcala.jose.proyectofinal_eq1_gestordegastospersonales
 
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.entidades.MetodoPago
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.entidades.Movimiento
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -71,6 +72,10 @@ class DetalleMovimiento : AppCompatActivity() {
             btnEliminar.setOnClickListener {
                 mostrarDialogoConfirmacion()
             }
+
+            btnEditar.setOnClickListener {
+                abrirFormularioEdicion()
+            }
         }
     }
 
@@ -97,6 +102,23 @@ class DetalleMovimiento : AppCompatActivity() {
             .addOnFailureListener { e ->
                 Toast.makeText(this, "Error al eliminar: ${e.message}", Toast.LENGTH_LONG).show()
             }
+    }
+
+    private fun abrirFormularioEdicion() {
+        val movimiento = movimientoActual
+        if (movimiento == null) {
+            Toast.makeText(this, "Error: No se encontró el movimiento a editar.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val tipoFormulario = movimiento.tipo.toString()
+
+        val intent = Intent(this, HomeActivity::class.java).apply {
+            putExtra("movimiento_a_editar", movimiento)
+            putExtra("tipo_formulario", tipoFormulario)
+        }
+        startActivity(intent)
+        finish()
     }
 
     private fun obtenerIconoPorCategoria(categoria: String?): Int {
