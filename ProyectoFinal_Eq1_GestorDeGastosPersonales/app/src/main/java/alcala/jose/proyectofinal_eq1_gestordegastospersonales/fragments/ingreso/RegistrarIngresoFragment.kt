@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.R
+import alcala.jose.proyectofinal_eq1_gestordegastospersonales.entidades.MetodoPago
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.entidades.Movimiento
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.entidades.TipoMovimiento
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.utiles.DatePickerHelper
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -34,9 +36,11 @@ class RegistrarIngresoFragment : Fragment() {
     private lateinit var fechaIngreso: EditText
     private lateinit var descripcionIngreso: EditText
     private lateinit var btnRegistrarIngreso: Button
+    private lateinit var txtTitulo: TextView
     private val db = FirebaseDatabase.getInstance().getReference("movimientos")
     private val auth = FirebaseAuth.getInstance()
     private var param2: String? = null
+    private var movimientoAEditar: Movimiento? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,10 +52,19 @@ class RegistrarIngresoFragment : Fragment() {
         fechaIngreso = view.findViewById(R.id.fechaIngreso)
         descripcionIngreso = view.findViewById(R.id.descripcionIngreso)
         btnRegistrarIngreso = view.findViewById(R.id.btnRegistrarIngreso)
+        txtTitulo = view.findViewById(R.id.txtTitulo)
 
         // Evita que se abra el teclado al pulsar
         fechaIngreso.isFocusable = false
         fechaIngreso.isClickable = true
+
+        val movimientoRecibido = arguments?.getSerializable("movimiento_a_editar") as? Movimiento
+        if (movimientoRecibido != null) {
+            movimientoAEditar = movimientoRecibido
+            precargarDatosParaEdicion(movimientoRecibido) // 🛑 Muestra la información
+            btnRegistrarIngreso.text = "Actualizar Ingreso"
+            txtTitulo.text = "Editar Ingreso"
+        }
 
         //Configura el listener para que al pulsar se abra el calendario
         fechaIngreso.setOnClickListener {
@@ -63,6 +76,12 @@ class RegistrarIngresoFragment : Fragment() {
             registrarIngreso()
         }
         return view
+    }
+
+    private fun precargarDatosParaEdicion(movimiento: Movimiento) {
+        montoIngreso.setText(movimiento.monto.toString())
+        fechaIngreso.setText(movimiento.fecha)
+        descripcionIngreso.setText(movimiento.descripcion)
     }
 
     private fun registrarIngreso() {
@@ -89,9 +108,14 @@ class RegistrarIngresoFragment : Fragment() {
 
         val horaActual = SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date())
 
-        val movimientoId = db.child(user.uid).push().key ?: return
+        val movimientoId = if (movimientoAEditar != null && !movimientoAEditar!!.id.isNullOrEmpty()) {
+            movimientoAEditar!!.id!!
+        } else {
+            db.child(user.uid).push().key ?: return
+        }
 
         val movimiento = Movimiento(
+            id = movimientoId,
             descripcion = descripcionStr,
             monto = monto,
             fecha = fechaStr,
@@ -103,8 +127,14 @@ class RegistrarIngresoFragment : Fragment() {
         db.child(user.uid).child(movimientoId)
             .setValue(movimiento)
             .addOnSuccessListener {
-                Toast.makeText(requireContext(), "Gasto registrado correctamente", Toast.LENGTH_SHORT).show()
-                limpiarCampos()
+                val mensaje = if (movimientoAEditar != null) "Ingreso actualizado correctamente" else "Ingreso registrado correctamente"
+                Toast.makeText(requireContext(), mensaje, Toast.LENGTH_SHORT).show()
+
+                if (movimientoAEditar == null) {
+                    limpiarCampos()
+                } else {
+                    requireActivity().finish()
+                }
             }
             .addOnFailureListener { e ->
                 Toast.makeText(requireContext(), "Error al registrar gasto: ${e.message}", Toast.LENGTH_LONG).show()

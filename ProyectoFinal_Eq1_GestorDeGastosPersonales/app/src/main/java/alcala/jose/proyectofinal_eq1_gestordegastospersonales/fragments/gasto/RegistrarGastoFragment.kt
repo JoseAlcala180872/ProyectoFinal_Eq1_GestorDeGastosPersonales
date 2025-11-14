@@ -12,6 +12,7 @@ import alcala.jose.proyectofinal_eq1_gestordegastospersonales.entidades.TipoMovi
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.utiles.DatePickerHelper
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -37,9 +38,11 @@ class RegistrarGastoFragment : Fragment() {
     private lateinit var fechaGasto: EditText
     private lateinit var descripcionGasto: EditText
     private lateinit var btnRegistrar: Button
+    private lateinit var txtTitulo: TextView
 
     private val db = FirebaseDatabase.getInstance().getReference("movimientos")
     private val auth = FirebaseAuth.getInstance()
+    private var movimientoAEditar: Movimiento? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,10 +56,19 @@ class RegistrarGastoFragment : Fragment() {
         fechaGasto = view.findViewById(R.id.fechaGasto)
         descripcionGasto = view.findViewById(R.id.descripcionGasto)
         btnRegistrar = view.findViewById(R.id.btnRegistrarGasto)
+        txtTitulo = view.findViewById(R.id.txtTitulo)
 
         // Evita que se abra el teclado al pulsar
         fechaGasto.isFocusable = false
         fechaGasto.isClickable = true
+
+        val movimientoRecibido = arguments?.getSerializable("movimiento_a_editar") as? Movimiento
+        if (movimientoRecibido != null) {
+            movimientoAEditar = movimientoRecibido
+            precargarDatosParaEdicion(movimientoRecibido)
+            btnRegistrar.text = "Actualizar"
+            txtTitulo.text = "Actualizar Gasto"
+        }
 
         //Configura el listener para que al pulsar se abra el calendario
         fechaGasto.setOnClickListener {
@@ -70,6 +82,22 @@ class RegistrarGastoFragment : Fragment() {
 
         return view
     }
+
+
+    private fun precargarDatosParaEdicion(movimiento: Movimiento) {
+        montoGasto.setText(movimiento.monto.toString())
+        categoria.setText(movimiento.categoria)
+        fechaGasto.setText(movimiento.fecha)
+        descripcionGasto.setText(movimiento.descripcion)
+
+        val tipoPagoString = when (movimiento.metodoPago) {
+            MetodoPago.TARJETA -> "Tarjeta"
+            MetodoPago.EFECTIVO -> "Efectivo"
+            else -> "Efectivo" // Por si acaso
+        }
+        tipoPago.setText(tipoPagoString)
+    }
+
 
 
     private fun registrarGasto() {
@@ -105,9 +133,14 @@ class RegistrarGastoFragment : Fragment() {
 
         val horaActual = SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date())
 
-        val movimientoId = db.child(user.uid).push().key ?: return
+        val movimientoId = if (movimientoAEditar != null && !movimientoAEditar!!.id.isNullOrEmpty()) {
+            movimientoAEditar!!.id!!
+        } else {
+            db.child(user.uid).push().key ?: return
+        }
 
         val movimiento = Movimiento(
+            id = movimientoId,
             descripcion = descripcionStr,
             categoria = categoriaStr,
             monto = monto,
@@ -120,8 +153,14 @@ class RegistrarGastoFragment : Fragment() {
         db.child(user.uid).child(movimientoId)
             .setValue(movimiento)
             .addOnSuccessListener {
-                Toast.makeText(requireContext(), "Gasto registrado correctamente", Toast.LENGTH_SHORT).show()
-                limpiarCampos()
+                val mensaje = if (movimientoAEditar != null) "Gasto actualizado correctamente" else "Gasto registrado correctamente"
+                Toast.makeText(requireContext(), mensaje, Toast.LENGTH_SHORT).show()
+
+                if (movimientoAEditar == null) {
+                    limpiarCampos()
+                } else {
+                    requireActivity().finish()
+                }
             }
             .addOnFailureListener { e ->
                 Toast.makeText(requireContext(), "Error al registrar gasto: ${e.message}", Toast.LENGTH_LONG).show()

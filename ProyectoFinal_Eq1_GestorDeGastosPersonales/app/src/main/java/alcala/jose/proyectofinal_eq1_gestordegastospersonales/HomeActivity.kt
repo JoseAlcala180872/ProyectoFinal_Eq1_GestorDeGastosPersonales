@@ -1,11 +1,13 @@
 package alcala.jose.proyectofinal_eq1_gestordegastospersonales
 
+import alcala.jose.proyectofinal_eq1_gestordegastospersonales.entidades.Movimiento
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.fragments.gasto.RegistrarGastoFragment
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.fragments.historial.HistorialFragment
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.fragments.ingreso.RegistrarIngresoFragment
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.fragments.presupuesto.PresupuestoFragment
 import android.os.Bundle
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -27,7 +29,12 @@ class HomeActivity : AppCompatActivity() {
 
         setupNavigation()
 
-        if (savedInstanceState == null) {
+        val movimientoAEditar = intent.getSerializableExtra("movimiento_a_editar") as? Movimiento
+        val tipoFormulario = intent.getStringExtra("tipo_formulario")
+
+        if (movimientoAEditar != null && tipoFormulario != null) {
+            cargarFragmentoParaEdicion(movimientoAEditar, tipoFormulario)
+        } else  if (savedInstanceState == null) {
             loadFragment(HistorialFragment())
             setActiveNavButton(navHome)
         }
@@ -78,5 +85,28 @@ class HomeActivity : AppCompatActivity() {
             button.background = null
         }
         activeButton.setBackgroundColor(ContextCompat.getColor(this, R.color.moradoClaro))
+    }
+
+    private fun cargarFragmentoParaEdicion(movimiento: Movimiento, tipo: String) {
+
+        val fragment: Fragment = when (tipo) {
+            "INGRESO" -> RegistrarIngresoFragment()
+            "GASTO" -> RegistrarGastoFragment()
+            else -> {
+                Toast.makeText(this, "Error: Tipo de movimiento desconocido.", Toast.LENGTH_SHORT).show()
+                loadFragment(HistorialFragment())
+                setActiveNavButton(navHome)
+                return
+            }
+        }
+
+        fragment.arguments = Bundle().apply {
+            putSerializable("movimiento_a_editar", movimiento)
+        }
+
+        loadFragment(fragment)
+
+        val activeNavButton = if (tipo == "INGRESO") navIngreso else navGasto
+        setActiveNavButton(activeNavButton)
     }
 }
