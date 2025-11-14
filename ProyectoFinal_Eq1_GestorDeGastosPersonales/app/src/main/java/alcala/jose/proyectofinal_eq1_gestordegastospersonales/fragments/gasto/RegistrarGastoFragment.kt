@@ -10,6 +10,8 @@ import alcala.jose.proyectofinal_eq1_gestordegastospersonales.entidades.MetodoPa
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.entidades.Movimiento
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.entidades.TipoMovimiento
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.utiles.DatePickerHelper
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -32,8 +34,8 @@ private const val ARG_PARAM2 = "param2"
 class RegistrarGastoFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private lateinit var montoGasto: EditText
-    private lateinit var categoria: EditText
-    private lateinit var tipoPago: EditText
+    private lateinit var categoria: AutoCompleteTextView
+    private lateinit var tipoPago: AutoCompleteTextView
     private lateinit var fechaGasto: EditText
     private lateinit var descripcionGasto: EditText
     private lateinit var btnRegistrar: Button
@@ -63,6 +65,49 @@ class RegistrarGastoFragment : Fragment() {
             // Llama a nuestro helper para mostrar el DatePickerDialog
             DatePickerHelper.showDatePickerDialog(requireContext(), fechaGasto)
         }
+
+        val categorias = listOf(
+            "Alimentación",
+            "Transporte",
+            "Entretenimiento",
+            "Vivienda",
+            "Salud",
+            "Compras",
+            "Servicios",
+            "Otros"
+        )
+
+        val adapterCategorias = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_dropdown_item_1line,
+            categorias
+        )
+        categoria.setAdapter(adapterCategorias)
+
+        categoria.setOnClickListener {
+            categoria.showDropDown()
+        }
+
+        val anchoDp = 250
+        val scale = resources.displayMetrics.density
+        categoria.dropDownWidth = (anchoDp * scale).toInt()
+
+        val metodosPago = listOf("Efectivo", "Tarjeta")
+
+        val adapterMetodosPago = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_dropdown_item_1line,
+            metodosPago
+        )
+        tipoPago.setAdapter(adapterMetodosPago)
+
+        tipoPago.setOnClickListener {
+            tipoPago.showDropDown()
+        }
+
+        val anchoDp1 = 250
+        val scale1 = resources.displayMetrics.density
+        tipoPago.dropDownWidth = (anchoDp * scale).toInt()
 
         btnRegistrar.setOnClickListener {
             registrarGasto()
@@ -99,7 +144,6 @@ class RegistrarGastoFragment : Fragment() {
 
         val metodoPago = when (tipoPagoStr.lowercase(Locale.ROOT)) {
             "tarjeta" -> MetodoPago.TARJETA
-            "efectivo" -> MetodoPago.EFECTIVO
             else -> MetodoPago.EFECTIVO
         }
 

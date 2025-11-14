@@ -17,6 +17,9 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import com.google.firebase.database.FirebaseDatabase
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class Registro : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -99,6 +102,7 @@ class Registro : AppCompatActivity() {
         val fechaNacimiento: EditText = findViewById(R.id.etFechaNacimiento)
 
         val usuario = Usuario(
+            null,
             nombre.text.toString(),
             apellido.text.toString(),
             correo.text.toString(),
@@ -119,6 +123,30 @@ class Registro : AppCompatActivity() {
         }
     }
 
+    fun esMayorDe16(fechaNacimientoStr: String): Boolean {
+        return try {
+            val formato = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            formato.isLenient = false
+
+            val fechaNacimiento = formato.parse(fechaNacimientoStr) ?: return false
+
+            val calendarioNacimiento = Calendar.getInstance()
+            calendarioNacimiento.time = fechaNacimiento
+
+            val hoy = Calendar.getInstance()
+
+            val edad = hoy.get(Calendar.YEAR) - calendarioNacimiento.get(Calendar.YEAR)
+
+            if (hoy.get(Calendar.DAY_OF_YEAR) < calendarioNacimiento.get(Calendar.DAY_OF_YEAR)) {
+                return edad - 1 >= 16
+            }
+
+            edad >= 16
+        } catch (e: Exception) {
+            false
+        }
+    }
+
     fun verificarCampos(): Boolean {
         val nombre: EditText = findViewById(R.id.etNombre)
         val apellido: EditText = findViewById(R.id.etApellido)
@@ -126,16 +154,23 @@ class Registro : AppCompatActivity() {
         val contraseña: EditText = findViewById(R.id.etContraseña)
         val confirmarContraseña: EditText = findViewById(R.id.etConfirmarContraseña)
         val fechaNacimiento: EditText = findViewById(R.id.etFechaNacimiento)
-        if (nombre.text.toString().isEmpty()
-            || apellido.text.toString().isEmpty()
-            || correo.text.toString().isEmpty()
-            || contraseña.text.toString().isEmpty()
-            || confirmarContraseña.text.toString().isEmpty()
-            || fechaNacimiento.text.toString().isEmpty()){
+
+        if (nombre.text.isNullOrEmpty()
+            || apellido.text.isNullOrEmpty()
+            || correo.text.isNullOrEmpty()
+            || contraseña.text.isNullOrEmpty()
+            || confirmarContraseña.text.isNullOrEmpty()
+            || fechaNacimiento.text.isNullOrEmpty()
+        ) {
+            Toast.makeText(this, "Por favor completa todos los campos", Toast.LENGTH_SHORT).show()
             return false
-        } else {
-            return true
         }
 
+        if (!esMayorDe16(fechaNacimiento.text.toString())) {
+            Toast.makeText(this, "Debes tener al menos 16 años", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        return true
     }
 }

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/moradoBackground"
     tools:context=".fragments.gasto.RegistrarGastoFragment">
@@ -67,24 +68,27 @@
         android:text="@string/categoria"
         android:textColor="@color/black"
         android:textSize="18sp"
-        android:textAlignment="center"
         android:fontFamily="@font/inter18ptitalic"
-        android:layout_marginLeft="45dp"
-        />
+        android:layout_marginLeft="45dp" />
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/categoria"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/borde_naranja"
-        android:hint="@string/categoria_hint"
-        android:padding="12dp"
         android:layout_marginLeft="45dp"
         android:layout_marginRight="45dp"
+        android:background="@drawable/borde_naranja"
+        android:hint="@string/fecha_hint"
+        android:padding="12dp"
         android:textColor="@color/black"
+        android:layout_marginBottom="16dp"
         android:fontFamily="@font/inter18ptregular"
         android:textSize="16sp"
-        android:layout_marginBottom="16dp" />
+        android:dropDownHeight="400dp"
+        android:dropDownVerticalOffset="8dp"
+        android:dropDownWidth="match_parent"
+        android:inputType="none"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -92,24 +96,29 @@
         android:text="@string/tipo_pago"
         android:textColor="@color/black"
         android:textSize="18sp"
-        android:textAlignment="center"
         android:fontFamily="@font/inter18ptitalic"
-        android:layout_marginLeft="45dp"
-        />
+        android:layout_marginLeft="45dp" />
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/tipoPago"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/borde_naranja"
-        android:hint="@string/tipo_pago_hint"
         android:layout_marginLeft="45dp"
         android:layout_marginRight="45dp"
-        android:padding="12dp"
+        android:hint="@string/fecha_hint"
+        android:background="@drawable/borde_naranja"
         android:textColor="@color/black"
-        android:fontFamily="@font/inter18ptregular"
         android:textSize="16sp"
-        android:layout_marginBottom="16dp" />
+        android:fontFamily="@font/inter18ptregular"
+        android:layout_marginBottom="16dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:gravity="center_vertical"
+        android:includeFontPadding="false"
+        android:inputType="none" />
+
 
     <TextView
         android:layout_width="wrap_content"
