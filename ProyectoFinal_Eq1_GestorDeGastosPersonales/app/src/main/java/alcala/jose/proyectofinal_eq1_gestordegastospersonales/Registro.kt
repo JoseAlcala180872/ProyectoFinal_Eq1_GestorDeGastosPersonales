@@ -1,6 +1,7 @@
 package alcala.jose.proyectofinal_eq1_gestordegastospersonales
 
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.entidades.Usuario
+import alcala.jose.proyectofinal_eq1_gestordegastospersonales.utiles.DatePickerHelper
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.Firebase
@@ -37,6 +39,16 @@ class Registro : AppCompatActivity() {
         val confirmarContraseña: EditText = findViewById(R.id.etConfirmarContraseña)
         val fechaNacimiento: EditText = findViewById(R.id.etFechaNacimiento)
         val botonRegistro: Button = findViewById(R.id.btnRegistrarGasto)
+
+        // Evita que se abra el teclado al pulsar
+        fechaNacimiento.isFocusable = false
+        fechaNacimiento.isClickable = true
+
+        //Configura el listener para que al pulsar se abra el calendario
+        fechaNacimiento.setOnClickListener {
+            // Llama a nuestro helper para mostrar el DatePickerDialog
+            DatePickerHelper.showDatePickerDialog(this, fechaNacimiento)
+        }
 
         botonRegistro.setOnClickListener {
             if (!verificarCampos()) {
