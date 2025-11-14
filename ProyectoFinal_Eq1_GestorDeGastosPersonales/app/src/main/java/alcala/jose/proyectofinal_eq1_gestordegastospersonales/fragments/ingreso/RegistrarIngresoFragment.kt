@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.R
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.entidades.Movimiento
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.entidades.TipoMovimiento
+import alcala.jose.proyectofinal_eq1_gestordegastospersonales.utiles.DatePickerHelper
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -47,6 +48,17 @@ class RegistrarIngresoFragment : Fragment() {
         fechaIngreso = view.findViewById(R.id.fechaIngreso)
         descripcionIngreso = view.findViewById(R.id.descripcionIngreso)
         btnRegistrarIngreso = view.findViewById(R.id.btnRegistrarIngreso)
+
+        // Evita que se abra el teclado al pulsar
+        fechaIngreso.isFocusable = false
+        fechaIngreso.isClickable = true
+
+        //Configura el listener para que al pulsar se abra el calendario
+        fechaIngreso.setOnClickListener {
+            // Llama a nuestro helper para mostrar el DatePickerDialog
+            DatePickerHelper.showDatePickerDialog(requireContext(), fechaIngreso)
+        }
+
         btnRegistrarIngreso.setOnClickListener {
             registrarIngreso()
         }

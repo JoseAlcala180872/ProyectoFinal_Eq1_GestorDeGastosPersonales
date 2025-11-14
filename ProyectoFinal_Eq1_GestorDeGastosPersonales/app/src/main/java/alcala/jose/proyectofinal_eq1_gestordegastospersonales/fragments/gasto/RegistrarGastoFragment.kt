@@ -9,6 +9,7 @@ import alcala.jose.proyectofinal_eq1_gestordegastospersonales.R
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.entidades.MetodoPago
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.entidades.Movimiento
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.entidades.TipoMovimiento
+import alcala.jose.proyectofinal_eq1_gestordegastospersonales.utiles.DatePickerHelper
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -52,6 +53,16 @@ class RegistrarGastoFragment : Fragment() {
         fechaGasto = view.findViewById(R.id.fechaGasto)
         descripcionGasto = view.findViewById(R.id.descripcionGasto)
         btnRegistrar = view.findViewById(R.id.btnRegistrarGasto)
+
+        // Evita que se abra el teclado al pulsar
+        fechaGasto.isFocusable = false
+        fechaGasto.isClickable = true
+
+        //Configura el listener para que al pulsar se abra el calendario
+        fechaGasto.setOnClickListener {
+            // Llama a nuestro helper para mostrar el DatePickerDialog
+            DatePickerHelper.showDatePickerDialog(requireContext(), fechaGasto)
+        }
 
         btnRegistrar.setOnClickListener {
             registrarGasto()

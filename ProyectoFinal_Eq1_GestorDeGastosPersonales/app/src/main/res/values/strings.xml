@@ -60,7 +60,7 @@
     <string name="tipo_pago">Tipo pago:</string>
     <string name="tipo_pago_hint">Pago</string>
     <string name="fecha_de_gasto">Fecha de gasto:</string>
-    <string name="fecha_hint">Fecha</string>
+    <string name="fecha_hint">Seleccionar</string>
     <string name="descripcion">Descripcion:</string>
     <string name="descripcion_hint">Descripcion</string>
     <string name="confirmar">Confirmar</string>
