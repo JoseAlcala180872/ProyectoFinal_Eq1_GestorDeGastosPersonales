@@ -64,6 +64,12 @@ class MovimientoAdapter(private var movimientos: List<Movimiento>,
                 MetodoPago.EFECTIVO -> "Efectivo"
             }
 
+            if (movimiento.esIngreso()) {
+                tvMetodoPago.visibility = View.INVISIBLE
+            }else {
+                tvMetodoPago.visibility = View.VISIBLE
+            }
+
             val icono = obtenerIconoPorCategoria(movimiento.categoria)
             ivIcono.setImageResource(icono)
 

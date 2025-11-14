@@ -6,6 +6,7 @@ import java.io.Serializable
 
 
 data class Movimiento(
+    @get:Exclude var id: String? = null,
     var descripcion: String? = null,
     var categoria: String? = null,
     var monto: Double = 0.0,

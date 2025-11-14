@@ -120,7 +120,11 @@ class HistorialFragment : Fragment() {
 
                 for (movSnapshot in snapshot.children) {
                     val movimiento = movSnapshot.getValue(Movimiento::class.java)
-                    if (movimiento != null) {
+
+                    val movimientoId = movSnapshot.key
+
+                    if (movimiento != null && movimientoId != null) {
+                        movimiento.id = movimientoId
                         listaMovimientos.add(movimiento)
                     }
                 }
