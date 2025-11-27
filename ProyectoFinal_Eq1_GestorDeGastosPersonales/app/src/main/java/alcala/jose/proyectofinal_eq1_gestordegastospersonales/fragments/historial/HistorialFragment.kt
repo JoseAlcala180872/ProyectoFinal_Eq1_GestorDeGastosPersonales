@@ -13,6 +13,7 @@ import alcala.jose.proyectofinal_eq1_gestordegastospersonales.entidades.Movimien
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.entidades.TipoMovimiento
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.utiles.MovimientoAdapter
 import android.content.Intent
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -51,10 +52,15 @@ class HistorialFragment : Fragment() {
 
         setupUserHeader(view)
         setupRecyclerView(view)
-        cargarUsuarioActual()
+//        cargarUsuarioActual()
         cargarMovimientosUsuario()
 
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        cargarUsuarioActual()
     }
 
     private fun setupUserHeader(view: View) {
@@ -138,7 +144,12 @@ class HistorialFragment : Fragment() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(requireContext(), "Error al cargar movimientos: ${error.message}", Toast.LENGTH_LONG).show()
+                // Verificamos si el fragmento está agregado (attached) a la actividad
+                if (isAdded && context != null) {
+                    Toast.makeText(requireContext(), "Consulta cancelada o error de permisos", Toast.LENGTH_SHORT).show()
+                } else {
+                    Log.e("HistorialFragment", "Error en DB, pero el fragmento ya no está activo: ${error.message}")
+                }
             }
         })
     }
