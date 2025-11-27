@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -29,6 +30,7 @@ class IniciarSesion : AppCompatActivity() {
         val btnIngresarInicio: Button = findViewById(R.id.btnIngresarInicio)
         val correo: EditText = findViewById(R.id.etCorreo)
         val contraseña: EditText = findViewById(R.id.etConfirmarContraseña)
+        val tv_olvideContra: TextView=findViewById(R.id.tv_olvideContra)
 
         btnIngresarInicio.setOnClickListener {
             if (correo.text.toString().isEmpty() || contraseña.text.toString().isEmpty()){
@@ -36,6 +38,11 @@ class IniciarSesion : AppCompatActivity() {
             }else{
                 iniciarSesion(correo.text.toString(), contraseña.text.toString())
             }
+        }
+
+        tv_olvideContra.setOnClickListener {
+            val intent = Intent(this, ResetPassword::class.java)
+            startActivity(intent)
         }
     }
 

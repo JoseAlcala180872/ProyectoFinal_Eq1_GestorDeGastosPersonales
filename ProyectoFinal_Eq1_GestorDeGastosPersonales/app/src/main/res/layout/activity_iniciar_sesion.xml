@@ -120,7 +120,7 @@
         android:background="@drawable/fondo_naranja_redondo">
 
         <TextView
-            android:id="@+id/nav_olvideContra"
+            android:id="@+id/tv_olvideContra"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/contraOlvidada"
