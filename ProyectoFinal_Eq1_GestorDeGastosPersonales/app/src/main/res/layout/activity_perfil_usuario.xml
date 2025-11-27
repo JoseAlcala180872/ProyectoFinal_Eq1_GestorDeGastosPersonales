@@ -165,13 +165,14 @@
                     android:layout_width="26dp"
                     android:layout_height="26dp"
                     android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="0dp"
                     android:background="@android:color/transparent"
                     android:src="@android:drawable/ic_menu_edit"
                     app:tint="#FFA726" />
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/btnGuardarNombre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -239,6 +240,7 @@
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/btnGuardarCorreo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
