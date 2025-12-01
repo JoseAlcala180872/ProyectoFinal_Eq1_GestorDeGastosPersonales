@@ -68,7 +68,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         navGraficos.setOnClickListener {
-            loadFragment(graficas())
+            loadFragment(GraficasFragment())
             setActiveNavButton(navGraficos)
         }
     }
