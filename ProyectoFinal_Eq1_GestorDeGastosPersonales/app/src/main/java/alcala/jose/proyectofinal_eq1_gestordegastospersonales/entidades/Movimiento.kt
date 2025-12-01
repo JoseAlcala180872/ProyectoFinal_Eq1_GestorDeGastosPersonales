@@ -14,6 +14,7 @@ data class Movimiento(
     var hora: String? = null,
     var tipo: TipoMovimiento = TipoMovimiento.GASTO,
     var metodoPago: MetodoPago = MetodoPago.EFECTIVO,
+    var urlComprobante: String? = null,
     @get:Exclude var iconoRes: Int = 0
 ) : Serializable {
 

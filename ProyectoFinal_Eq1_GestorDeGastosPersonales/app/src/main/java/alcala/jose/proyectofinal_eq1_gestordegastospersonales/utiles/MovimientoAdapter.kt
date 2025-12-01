@@ -45,12 +45,14 @@ class MovimientoAdapter(private var movimientos: List<Movimiento>,
         private fun obtenerIconoPorCategoria(categoria: String?): Int {
             return when (categoria?.lowercase()) {
                 "alimentación", "alimentacion" -> R.drawable.ic_food
-                "entretenimiento" -> R.drawable.ic_launcher_background
-                "transporte" -> R.drawable.ic_launcher_background
-                "vivienda" -> R.drawable.ic_launcher_background
-                "salud" -> R.drawable.ic_launcher_background
-                "otros" -> R.drawable.ic_launcher_background
+                "entretenimiento" -> R.drawable.ic_entretenimiento
+                "transporte" -> R.drawable.ic_transporte
+                "vivienda" -> R.drawable.ic_vivienda
+                "salud" -> R.drawable.ic_salud
+                "servicios" -> R.drawable.ic_launcher_background
+                "otros" -> R.drawable.ic_otros
                 "ingreso" -> R.drawable.ic_incomes
+                "compras" -> R.drawable.ic_compras
                 else -> R.drawable.ic_launcher_background
             }
         }

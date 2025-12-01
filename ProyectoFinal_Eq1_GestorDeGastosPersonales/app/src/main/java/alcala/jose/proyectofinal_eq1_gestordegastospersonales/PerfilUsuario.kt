@@ -2,6 +2,7 @@ package alcala.jose.proyectofinal_eq1_gestordegastospersonales
 
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.entidades.Usuario
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.utiles.PerfilUsuarioViewModel
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -38,6 +39,9 @@ class PerfilUsuario : AppCompatActivity() {
     private lateinit var ivEditarCorreo: ImageButton
     private lateinit var btnGuardarNombre: TextView
     private lateinit var btnGuardarCorreo: TextView
+    private lateinit var etContrasena: EditText
+    private lateinit var ibEditarContrasena: ImageButton
+    private lateinit var btnGuardarContrasena: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -75,11 +79,15 @@ class PerfilUsuario : AppCompatActivity() {
         btnCerrarSesion = findViewById(R.id.btnCerrarSesion)
         ivEditarNombre = findViewById(R.id.btnEditName)
         ivEditarCorreo = findViewById(R.id.btnEditEmail)
+        etContrasena = findViewById(R.id.etContrasena)
+        btnGuardarContrasena = findViewById(R.id.btnGuardarContrasena)
+        ibEditarContrasena = findViewById(R.id.btnEditPassword)
     }
 
     private fun setupEstadoInicial(){
         desactivarEdicion(etNombreCompleto, btnGuardarNombre)
         desactivarEdicion(etCorreo, btnGuardarCorreo)
+        desactivarEdicion(etContrasena, btnGuardarContrasena)
     }
 
     private fun setUpLieteners(){
@@ -91,12 +99,32 @@ class PerfilUsuario : AppCompatActivity() {
             guardarDatos()
         }
 
+        // --- LOGICA CONTRASEÑA ---
+        ibEditarContrasena.setOnClickListener {
+            // 1. Limpiamos el campo para que escriba la nueva
+            etContrasena.text.clear()
+            etContrasena.hint = "Nueva contraseña"
+
+            // 2. Activamos edición
+            activarEdicion(etContrasena, btnGuardarContrasena)
+        }
+
+        btnGuardarContrasena.setOnClickListener {
+            val nuevaPass = etContrasena.text.toString()
+
+            // Bloqueamos botón temporalmente
+            btnGuardarContrasena.isEnabled = false
+
+            // Llamamos al ViewModel
+            viewModel.cambiarContrasena(nuevaPass)
+        }
+
         ivEditarCorreo.setOnClickListener { activarEdicion(etCorreo, btnGuardarCorreo) }
         btnGuardarCorreo.setOnClickListener { guardarDatos() }
 
         btnCerrarSesion.setOnClickListener {
             auth.signOut()
-            Toast.makeText(this, "Sesion Cerrada", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, "Sesion Cerrada", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
@@ -134,6 +162,7 @@ class PerfilUsuario : AppCompatActivity() {
         viewModel.resutladoActualizacion.observe(this) {resultado ->
             btnGuardarNombre.isEnabled = true
             btnGuardarCorreo.isEnabled = true
+            btnGuardarContrasena.isEnabled = true
 
             when {
                 resultado == "EXITO" -> {
@@ -141,6 +170,14 @@ class PerfilUsuario : AppCompatActivity() {
                     // Bloqueamos todo de nuevo
                     desactivarEdicion(etNombreCompleto, btnGuardarNombre)
                     desactivarEdicion(etCorreo, btnGuardarCorreo)
+                }
+                resultado == "EXITO_PASSWORD" -> {
+                    Toast.makeText(this, "Contraseña actualizada correctamente", Toast.LENGTH_SHORT)
+                        .show()
+
+                    // Limpiamos el campo y ponemos puntitos falsos estéticos
+                    etContrasena.setText("..........")
+                    desactivarEdicion(etContrasena, btnGuardarContrasena)
                 }
                 resultado == "EXITO_CON_LOGOUT" -> {
                     Toast.makeText(this, "Correo actualizado. Inicia sesión de nuevo.", Toast.LENGTH_LONG).show()
@@ -152,6 +189,20 @@ class PerfilUsuario : AppCompatActivity() {
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                     finish()
+                }
+                resultado == "ERROR_SEGURIDAD_PASS" -> {
+                    AlertDialog.Builder(this)
+                        .setTitle("Seguridad")
+                        .setMessage("Para cambiar tu contraseña, necesitamos verificar que eres tú. Por favor, cierra sesión e inicia de nuevo.")
+                        .setPositiveButton("Cerrar Sesión") { _, _ ->
+                            auth.signOut()
+                            startActivity(Intent(this, MainActivity::class.java).apply {
+                                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            })
+                            finish()
+                        }
+                        .setNegativeButton("Cancelar", null)
+                        .show()
                 }
                 resultado == "ERROR_SEGURIDAD" -> {
                     // Muestra un diálogo o un Toast largo explicando claramente

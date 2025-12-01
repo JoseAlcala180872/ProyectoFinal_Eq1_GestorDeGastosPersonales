@@ -35,8 +35,19 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/btnRegistrarGasto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/confirmar"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/naranja"
+        android:textColor="@color/black"
+        android:fontFamily="@font/inter18ptbold"
+        android:textSize="20sp"
+        />
+
     <TextView
-        android:layout_marginTop="35dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/monto"
@@ -175,16 +186,26 @@
 
 
     <Button
-        android:id="@+id/btnRegistrarGasto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/confirmar"
-        android:layout_gravity="center_horizontal"
+        android:id="@+id/btnSeleccionarFoto"
+        android:text="@string/adjuntar_ticket_opcional"
+        android:layout_gravity="center"
         android:backgroundTint="@color/naranja"
         android:textColor="@color/black"
         android:fontFamily="@font/inter18ptbold"
-        android:textSize="20sp"
-        />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <ImageView
+        android:id="@+id/ivVistaPreviaTicket"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/ic_launcher_background"
+        android:visibility="gone"
+        android:layout_gravity="center"/>
+
+
+
 
     <ImageView
         android:layout_width="match_parent"

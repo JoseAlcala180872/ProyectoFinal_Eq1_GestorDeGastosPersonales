@@ -1,10 +1,8 @@
 package alcala.jose.proyectofinal_eq1_gestordegastospersonales.entidades
 
 data class Presupuesto(
-    var id: String? = null,
-    var userId: String? = null,
-    var mes: String? = null,
-    var total: Double = 0.0,
-    var distribucionPorCategoria: Map<String, Double>? = null,
-    var alertaPorcentaje: Double = 0.8
+    val nombre: String,
+    var presupuesto: Double = 0.0,
+    var gastado: Double = 0.0,
+    val iconoResId: Int // R.drawable.ic_food, etc.
 )

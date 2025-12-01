@@ -39,6 +39,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/inter18ptbold"
         android:textSize="24sp"
+        android:layout_marginTop="10dp"
         android:text="@string/presupuesto_mensual"
         android:gravity="center"
         android:textColor="@color/black"
@@ -136,147 +137,13 @@
         android:textSize="19sp"
         />
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/categories_List"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@drawable/borde_naranja"
-        android:padding="16dp"
-        android:layout_margin="16dp"
-        android:gravity="center_vertical">
-
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/boton_circular_rojo"
-            android:src="@drawable/ic_food"
-            android:padding="4dp"
-            android:layout_marginEnd="12dp"/>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginStart="12dp"
-                android:gravity="center_vertical">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/alimentacion"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"/>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/signo_dinero"
-                            android:textSize="14sp"
-                            android:textColor="#666666"
-                            android:layout_marginTop="2dp"
-                            android:layout_marginBottom="8dp"/>
-                        <TextView
-                            android:id="@+id/txtCantidadActualAlmientacion"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:text="@string/cincomildoscientos"
-                            android:textColor="#666666"
-                            android:layout_marginTop="2dp"
-                            android:layout_marginBottom="8dp"
-                            />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="/"
-                            android:textSize="14sp"
-                            android:textColor="#666666"
-                            android:layout_marginTop="2dp"
-                            android:layout_marginBottom="8dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/signo_dinero"
-                            android:textSize="14sp"
-                            android:textColor="#666666"
-                            android:layout_marginTop="2dp"
-                            android:layout_marginBottom="8dp"/>
-                        <TextView
-                            android:id="@+id/txtCantidadTotalAlimentacion"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/ochomil"
-                            android:textSize="14sp"
-                            android:textColor="#666666"
-                            android:layout_marginTop="2dp"
-                            android:layout_marginBottom="8dp"/>
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <ImageButton
-                    android:id="@+id/btnAgregarAlimentacion"
-                    android:layout_width="27dp"
-                    android:layout_height="27dp"
-                    android:background="@drawable/boton_circular_naranja"
-                    android:padding="10dp"
-                    android:layout_marginStart="8dp"
-                    android:src="@drawable/ic_add_24"
-                    android:layout_marginEnd="8dp"/>
-
-                <ImageButton
-                    android:id="@+id/btnSignoAlimentacion"
-                    android:layout_width="27dp"
-                    android:layout_height="27dp"
-                    android:background="@drawable/boton_circular_naranja"
-                    android:src="@drawable/ic_slash_24"
-                    android:padding="20dp"/>
-
-            </LinearLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ProgressBar
-                    android:id="@+id/barraProgeso"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="18dp"
-                    android:progress="65"
-                    android:max="100"
-                    android:progressDrawable="@drawable/barra_redondeada"/>
-
-                <TextView
-                    android:id="@+id/txtPorcentaje"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/porcentaje"
-                    android:textSize="11sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:layout_centerInParent="true"/>
-            </RelativeLayout>
-        </LinearLayout>
-
-
-    </LinearLayout>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp"
+        android:scrollbars="vertical" />
 
 
 

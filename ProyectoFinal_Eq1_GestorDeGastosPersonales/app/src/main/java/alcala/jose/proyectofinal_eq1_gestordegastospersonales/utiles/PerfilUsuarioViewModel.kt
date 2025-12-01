@@ -115,4 +115,36 @@ class PerfilUsuarioViewModel : ViewModel() {
                 _resultadoActualizacion.value = "ERROR BD: ${it.message}"
             }
     }
+
+    fun cambiarContrasena(nuevaContrasena: String) {
+        val usuarioActualAuth = auth.currentUser
+
+        if (usuarioActualAuth == null) {
+            _resultadoActualizacion.value = "ERROR: Sesión no válida."
+            return
+        }
+
+        // 1. Validaciones de seguridad básicas
+        if (nuevaContrasena.length < 6) {
+            _resultadoActualizacion.value = "ERROR: La contraseña debe tener al menos 6 caracteres."
+            return
+        }
+
+        _resultadoActualizacion.value = "CARGANDO"
+
+        // 2. Intentamos actualizar
+        usuarioActualAuth.updatePassword(nuevaContrasena)
+            .addOnSuccessListener {
+                // Éxito total
+                _resultadoActualizacion.value = "EXITO_PASSWORD"
+            }
+            .addOnFailureListener { e ->
+                // Manejo de errores
+                if (e is com.google.firebase.auth.FirebaseAuthRecentLoginRequiredException) {
+                    _resultadoActualizacion.value = "ERROR_SEGURIDAD_PASS"
+                } else {
+                    _resultadoActualizacion.value = "ERROR: ${e.message}"
+                }
+            }
+    }
 }
