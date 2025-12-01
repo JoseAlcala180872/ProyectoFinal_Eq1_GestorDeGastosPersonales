@@ -1,6 +1,7 @@
 package alcala.jose.proyectofinal_eq1_gestordegastospersonales
 
 import android.graphics.Color
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.entidades.Movimiento
-import alcala.jose.proyectofinal_eq1_gestordegastospersonales.utiles.CalculadoraGastos // Importante: Importar la nueva clase
+import alcala.jose.proyectofinal_eq1_gestordegastospersonales.utiles.CalculadoraGastos
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.utiles.GastoCategoria
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.utiles.GraficaGastosDrawable
 import com.google.firebase.auth.FirebaseAuth
@@ -23,6 +24,7 @@ class GraficasFragment : Fragment() {
     private lateinit var tvSinDatos: TextView
     private lateinit var tvTotalGastos: TextView
     private lateinit var mapaTextViews: Map<String, TextView>
+    private lateinit var mapaImageViews: Map<String, ImageView>
 
     // Dependencias y datos
     private lateinit var auth: FirebaseAuth
@@ -44,6 +46,7 @@ class GraficasFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_graficas, container, false)
         initVistas(view)
+        actualizarColoresLeyenda()
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance().reference
         cargarDatosDeGastos()
@@ -55,7 +58,6 @@ class GraficasFragment : Fragment() {
         tvSinDatos = view.findViewById(R.id.tv_sin_datos)
         tvTotalGastos = view.findViewById(R.id.tvTotalGastos)
 
-        // Usamos un mapa para asociar cada categoría con su TextView, ¡código más limpio!
         mapaTextViews = mapOf(
             "Alimentación" to view.findViewById(R.id.tvAlimentacion),
             "Transporte" to view.findViewById(R.id.tvTransporte),
@@ -66,6 +68,28 @@ class GraficasFragment : Fragment() {
             "Servicios" to view.findViewById(R.id.tvServicios),
             "Otros" to view.findViewById(R.id.tvOtros)
         )
+
+
+        mapaImageViews = mapOf(
+            "Alimentación" to view.findViewById(R.id.ivAlimentacion),
+            "Transporte" to view.findViewById(R.id.ivTransporte),
+            "Entretenimiento" to view.findViewById(R.id.ivEntretenimiento),
+            "Vivienda" to view.findViewById(R.id.ivVivienda),
+            "Salud" to view.findViewById(R.id.ivSalud),
+            "Compras" to view.findViewById(R.id.ivCompras),
+            "Servicios" to view.findViewById(R.id.ivServicios),
+            "Otros" to view.findViewById(R.id.ivOtros)
+        )
+    }
+
+    private fun actualizarColoresLeyenda() {
+        categoriasPredeterminadas.forEachIndexed { index, categoria ->
+            mapaImageViews[categoria]?.let { imageView ->
+                val color = colores[index % colores.size]
+                // Se usa setColorFilter para teñir la imagen del color correspondiente
+                imageView.setColorFilter(color, PorterDuff.Mode.SRC_IN)
+            }
+        }
     }
 
     private fun cargarDatosDeGastos() {
@@ -74,17 +98,11 @@ class GraficasFragment : Fragment() {
         database.child("movimientos").child(userId).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val movimientos = snapshot.children.mapNotNull { it.getValue(Movimiento::class.java) }
-
-                // 1. Usar la nueva clase de utilidad para hacer todos los cálculos
                 val resultados = CalculadoraGastos.calcular(movimientos, categoriasPredeterminadas)
 
-                // 2. Actualizar el TextView del total de gastos
                 tvTotalGastos.text = String.format(Locale.US, "$%.2f", resultados.totalGastos)
-
-                // 3. Actualizar la leyenda de porcentajes
                 actualizarLeyenda(resultados.porcentajes)
 
-                // 4. Preparar datos para la gráfica de anillo (solo categorías con gastos)
                 val listaGastosCategoria = resultados.porcentajes.entries
                     .filter { it.value > 0 }
                     .map { entry ->
@@ -95,7 +113,6 @@ class GraficasFragment : Fragment() {
                         )
                     }
 
-                // 5. Dibujar la gráfica o mostrar el estado vacío
                 actualizarGrafica(listaGastosCategoria)
             }
 
@@ -105,7 +122,6 @@ class GraficasFragment : Fragment() {
 
     private fun actualizarLeyenda(porcentajes: Map<String, Double>) {
         porcentajes.forEach { (categoria, porcentaje) ->
-            // Se actualiza el texto de cada categoría con su porcentaje
             mapaTextViews[categoria]?.text = String.format(Locale.US, "%s: %.1f%%", categoria, porcentaje)
         }
     }
