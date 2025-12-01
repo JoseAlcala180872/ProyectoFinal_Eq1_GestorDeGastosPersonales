@@ -3,6 +3,7 @@ package alcala.jose.proyectofinal_eq1_gestordegastospersonales
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.entidades.MetodoPago
 import alcala.jose.proyectofinal_eq1_gestordegastospersonales.entidades.Movimiento
 import android.content.Intent
+import android.media.Image
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -20,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase
 class DetalleMovimiento : AppCompatActivity() {
     private var movimientoActual: Movimiento? = null
     private val auth = FirebaseAuth.getInstance()
+    private lateinit var ivComprobante: ImageView
     private val dbMovimientos by lazy {
         val userId = auth.currentUser?.uid ?: throw IllegalStateException("Usuario sin permisos.")
         FirebaseDatabase.getInstance().getReference("movimientos").child(userId)
@@ -34,6 +36,8 @@ class DetalleMovimiento : AppCompatActivity() {
             insets
         }
         val movimiento = intent.getSerializableExtra("movimiento") as? Movimiento
+
+        ivComprobante = findViewById(R.id.ivComprobante)
 
         if (movimiento != null) {
             movimientoActual = movimiento
@@ -76,6 +80,24 @@ class DetalleMovimiento : AppCompatActivity() {
             btnEditar.setOnClickListener {
                 abrirFormularioEdicion()
             }
+
+            cargarComprobante(movimiento.urlComprobante)
+        }
+    }
+
+    private fun cargarComprobante(url: String?) {
+        if (url.isNullOrEmpty()) {
+            // Si no hay URL, ocultamos el ImageView
+            ivComprobante.visibility = View.GONE
+        } else {
+            // Si hay URL, mostramos el ImageView y cargamos la foto con Glide
+            ivComprobante.visibility = View.VISIBLE
+
+            com.bumptech.glide.Glide.with(this)
+                .load(url)
+                .placeholder(android.R.drawable.ic_menu_gallery) // Imagen mientras carga (opcional)
+                .error(android.R.drawable.stat_notify_error)     // Imagen si falla (opcional)
+                .into(ivComprobante)
         }
     }
 
@@ -124,12 +146,14 @@ class DetalleMovimiento : AppCompatActivity() {
     private fun obtenerIconoPorCategoria(categoria: String?): Int {
         return when (categoria?.lowercase()) {
             "alimentación", "alimentacion" -> R.drawable.ic_food
-            "entretenimiento" -> R.drawable.ic_launcher_background
-            "transporte" -> R.drawable.ic_launcher_background
-            "vivienda" -> R.drawable.ic_launcher_background
-            "salud" -> R.drawable.ic_launcher_background
-            "otros" -> R.drawable.ic_launcher_background
+            "entretenimiento" -> R.drawable.ic_entretenimiento
+            "transporte" -> R.drawable.ic_transporte
+            "vivienda" -> R.drawable.ic_vivienda
+            "salud" -> R.drawable.ic_salud
+            "servicios" -> R.drawable.ic_servicio
+            "otros" -> R.drawable.ic_otros
             "ingreso" -> R.drawable.ic_incomes
+            "compras" -> R.drawable.ic_compras
             else -> R.drawable.ic_launcher_background
         }
     }

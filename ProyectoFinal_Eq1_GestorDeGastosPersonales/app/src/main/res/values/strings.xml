@@ -83,4 +83,5 @@
     <string name="fecha_view">12/10/2025</string>
     <string name="tarjeta_view">Tarjeta</string>
     <string name="monto_view">-$10,000</string>
+    <string name="adjuntar_ticket_opcional">Adjuntar Ticket (Opcional)</string>
 </resources>
