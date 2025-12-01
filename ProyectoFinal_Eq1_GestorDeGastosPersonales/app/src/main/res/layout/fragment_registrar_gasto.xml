@@ -35,19 +35,8 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnRegistrarGasto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/confirmar"
-        android:layout_gravity="center_horizontal"
-        android:backgroundTint="@color/naranja"
-        android:textColor="@color/black"
-        android:fontFamily="@font/inter18ptbold"
-        android:textSize="20sp"
-        />
-
     <TextView
+        android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/monto"
@@ -206,6 +195,18 @@
 
 
 
+    <Button
+        android:id="@+id/btnRegistrarGasto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/confirmar"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/naranja"
+        android:textColor="@color/black"
+        android:fontFamily="@font/inter18ptbold"
+        android:textSize="20sp"
+        />
 
     <ImageView
         android:layout_width="match_parent"
