@@ -16,6 +16,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -127,7 +128,6 @@ class PresupuestoFragment : Fragment() {
         // --- 1. Escuchar Presupuestos (Global y por Categoría) ---
         db.getReference("presupuestos").child(uid).addValueEventListener(object :
             ValueEventListener {
-            // CORRECCIÓN: Se agregó la palabra 'override' aquí abajo
             override fun onDataChange(snapshot: DataSnapshot) {
                 // A. Presupuesto Global
                 // Usamos una conversión segura a Double para evitar crasheos si es entero (Long)
@@ -136,8 +136,8 @@ class PresupuestoFragment : Fragment() {
                     ?: 0.0
 
                 presupuestoGlobalTotal = total
-                tvPresupuestoTotal.text = formatearDinero(presupuestoGlobalTotal)
 
+                var totalPresupuestosCategorias = 0.0
                 // B. Presupuestos por Categoría
                 for (cat in listaCategorias) {
                     // Generamos la clave en minúsculas (ej: "alimentacion")
@@ -149,16 +149,25 @@ class PresupuestoFragment : Fragment() {
                         ?: 0.0
 
                     cat.presupuesto = presCat
+                    totalPresupuestosCategorias += presCat
                 }
+
+                // ----> Actualizar la UI del presupuesto total
+                // Restamos la suma de los presupuestos de categorías al total.
+                val presupuestoRestante = presupuestoGlobalTotal - totalPresupuestosCategorias
+                // Mostramos el resultado formateado
+                tvPresupuestoTotal.text = formatearDinero(presupuestoRestante)
 
                 // Notificar al adapter que los datos cambiaron
                 adapter.notifyDataSetChanged()
                 actualizarColorGastadoGlobal()
             }
 
-            // CORRECCIÓN: Se agregó la palabra 'override' aquí abajo
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(context, "Error al cargar presupuestos", Toast.LENGTH_SHORT).show()
+                // Es buena práctica verificar si el contexto aún existe antes de mostrar el Toast
+                context?.let {
+                    Toast.makeText(it, "Error al cargar presupuestos", Toast.LENGTH_SHORT).show()
+                }
             }
         })
 
@@ -207,12 +216,14 @@ class PresupuestoFragment : Fragment() {
     }
 
     private fun mostrarDialogoPresupuesto(claveFirebase: String) {
-        val titulo = if(claveFirebase == "total") "Presupuesto Total" else "Presupuesto ${claveFirebase.capitalize()}"
+        // Usar 'context' en lugar de 'requireContext()' para evitar el crash.
+        val currentContext = context ?: return
+        val titulo = if(claveFirebase == "total") "Presupuesto Total" else "Presupuesto ${claveFirebase.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString() }}"
 
-        val builder = AlertDialog.Builder(requireContext())
+        val builder = AlertDialog.Builder(currentContext)
         builder.setTitle(titulo)
 
-        val input = EditText(requireContext())
+        val input = EditText(currentContext)
         input.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL
         input.hint = "Ej: 2000"
         builder.setView(input)
@@ -220,7 +231,7 @@ class PresupuestoFragment : Fragment() {
         builder.setPositiveButton("Guardar") { _, _ ->
             val montoStr = input.text.toString()
             if (montoStr.isNotEmpty()) {
-                val monto = montoStr.toDouble()
+                val monto = montoStr.toDoubleOrNull() ?: 0.0 // Usamos toDoubleOrNull para más seguridad
                 guardarPresupuestoEnFirebase(claveFirebase, monto)
             }
         }
@@ -230,18 +241,26 @@ class PresupuestoFragment : Fragment() {
 
     private fun guardarPresupuestoEnFirebase(clave: String, monto: Double) {
         val uid = auth.currentUser?.uid ?: return
+        // La lógica de resta se centraliza en `escucharDatosFirebase` para evitar inconsistencias.
         db.getReference("presupuestos").child(uid).child(clave).setValue(monto)
             .addOnSuccessListener {
-                Toast.makeText(context, "Guardado", Toast.LENGTH_SHORT).show()
+                context?.let {
+                    Toast.makeText(it, "Guardado", Toast.LENGTH_SHORT).show()
+                }
             }
     }
 
     private fun actualizarColorGastadoGlobal() {
-        if (gastoGlobalTotal > presupuestoGlobalTotal && presupuestoGlobalTotal > 0) {
-            tvGastado.setTextColor(resources.getColor(android.R.color.holo_red_dark, null))
+        // Usar ContextCompat para obtener colores de forma segura y compatible.
+        val currentContext = context ?: return
+        // AJUSTE: La lógica de color debe comparar el gasto contra el total disponible real.
+        val presupuestoRestante = presupuestoGlobalTotal - listaCategorias.sumOf { it.presupuesto }
+
+        if (gastoGlobalTotal > presupuestoRestante && presupuestoRestante > 0) {
+            tvGastado.setTextColor(ContextCompat.getColor(currentContext, android.R.color.holo_red_dark))
         } else {
             // Regresar a color normal (rojoClaro según tu XML)
-            tvGastado.setTextColor(resources.getColor(R.color.rojoClaro, null))
+            tvGastado.setTextColor(ContextCompat.getColor(currentContext, R.color.rojoClaro))
         }
     }
 
